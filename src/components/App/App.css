@@ -1,11 +1,10 @@
 .page {
-  background-color: #63ddff;
+  background-image: linear-gradient(to bottom right, #ffc508, #61d8ed);
   min-height: 100vh;
 }
 
 .page__content {
-  max-width: 1440px;
+  min-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
-  background-color: #63ddff;
 }
