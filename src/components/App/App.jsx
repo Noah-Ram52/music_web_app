@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div className="page">
-        <div className="page__content">
+        <div>
           <Header />
         </div>
       </div>

@@ -1,10 +1,5 @@
 .page {
   background-image: linear-gradient(to bottom right, #ffc508, #61d8ed);
   min-height: 100vh;
-}
-
-.page__content {
-  min-width: 1440px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding-top: 10px;
 }
