@@ -1,0 +1,31 @@
+.about {
+  padding-top: 275px;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 40%;
+}
+
+.about__info {
+  font-family: "Roboto", sans-serif;
+}
+
+.about__contact_info {
+  text-decoration: none;
+  color: black;
+}
+
+.about__contact_info:hover {
+  animation: boldContactInfo ease infinite 2s;
+}
+
+@keyframes boldContactInfo {
+  0% {
+    font-weight: 400;
+  }
+  50% {
+    font-weight: 700;
+  }
+  100% {
+    font-weight: 400;
+  }
+}

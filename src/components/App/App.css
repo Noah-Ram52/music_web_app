@@ -3,3 +3,12 @@
   min-height: 100vh;
   padding-top: 10px;
 }
+.page__content {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 100px;
+}
+
+.page__main {
+  flex: 1; /* grow to fill space and push footer down [web:1][web:2][web:9] */
+}

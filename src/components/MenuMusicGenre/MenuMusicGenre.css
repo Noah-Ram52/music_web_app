@@ -1,0 +1,36 @@
+.menu-music-genre {
+  display: none;
+}
+
+.menu-music-genre.menu-music-genre--open {
+  display: flex;
+  position: fixed;
+  inset: 0;
+
+  align-items: center;
+  z-index: 1000;
+}
+
+.menu-music-genre__panel {
+  background: #850202;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.menu-music-genre__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.menu-music-genre__list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-music-genre__item {
+  padding: 10px 0;
+}

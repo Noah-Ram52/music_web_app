@@ -1,0 +1,26 @@
+.main {
+  margin-top: 20px;
+  display: flex;
+  gap: 24px; /* space between image and text */
+  align-items: flex-start;
+}
+
+.main__music_image {
+  max-width: 50%;
+  height: 310px;
+  border-radius: 5px;
+}
+
+.main__info_text {
+  max-width: 40%;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0; /* reset margins so spacing is controlled by padding/line-height */
+  padding: 0px 40px;
+  line-height: 1.5; /* increase spacing between lines */
+}
+
+.main__music_notation {
+  border-radius: 5px;
+}

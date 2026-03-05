@@ -1,0 +1,10 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0 40px; /* push footer content down and add spacing from bottom */
+}
+
+.footer__developer_text {
+  font-family: "Montserrat", sans-serif;
+}
