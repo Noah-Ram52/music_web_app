@@ -7,17 +7,27 @@ import { useState } from "react";
 
 // #Components
 import Header from "../Header/Header";
-import MenuMusicGenre from "../MenuMusicGenre/MenuMusicGenre";
+import MusicGenreSongsList from "../MenuMusicGenre/MusicGenreSongsList";
+import MenuMusicArtist from "../MenuMusicArtist/MenuMusicArtist";
 import Main from "../Main/Main";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 
 function App() {
-  // #State for toggling the music genre menu
+  // ## State for toggling the music genre menu
   // toggleMusicGenre flips it between false and true
+  // isMusicGenreOpen controls whether the menu/modal is open
+
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
-  const toggleMusicGenre = () =>
-    setIsMusicGenreOpen((toggleGenre) => !toggleGenre);
+  const [menuTitle, setMenuTitle] = useState("");
+
+  // Open the menu with a specific title (e.g. "Music Songs" or "Music Artist")
+  const openMusicMenu = (title) => {
+    setMenuTitle(title || "");
+    setIsMusicGenreOpen(true);
+  };
+
+  
 
   return (
     <>
@@ -29,9 +39,20 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <Header onMusicToggle={toggleMusicGenre} />
-                    {isMusicGenreOpen && (
-                      <MenuMusicGenre isMenuOpen={isMusicGenreOpen} />
+                    <Header onMusicToggle={openMusicMenu} />
+                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
+                      <MusicGenreSongsList
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={() => setIsMusicGenreOpen(false)}
+                        title={menuTitle}
+                      />
+                    )}
+                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
+                      <MenuMusicArtist
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={() => setIsMusicGenreOpen(false)}
+                        title={menuTitle}
+                      />
                     )}
                     <Main />
 

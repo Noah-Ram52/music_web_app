@@ -1,0 +1,6 @@
+/* Position the modal panel specifically for the Artist variant */
+.menu-music-artist {
+  position: relative;
+  bottom: 17px;
+  left: 350px;
+}

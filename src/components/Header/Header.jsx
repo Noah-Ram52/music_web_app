@@ -8,13 +8,20 @@ function Header({ onMusicToggle }) {
         <nav className="header__inner">
           <div className="header__main_displays">
             <button className="header__buttons">Home</button>
-            <button className="header__buttons" onClick={() => onMusicToggle()}>
+            <button
+              className="header__buttons"
+              onClick={() => onMusicToggle && onMusicToggle("Music Songs")}
+            >
               Music
             </button>
-            <button className="header__buttons">Artist</button>
+            <button
+              className="header__buttons"
+              onClick={() => onMusicToggle && onMusicToggle("Music Artist")}
+            >
+              Artist
+            </button>
             <button className="header__buttons">About</button>
           </div>
-
           <div className="header__login-bar">
             <button className="header__login">Login or Sign Up</button>
           </div>
