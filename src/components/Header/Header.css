@@ -37,7 +37,12 @@
   will-change: transform;
   transition: transform 180ms ease;
   padding: 6px 8px;
+  
 }
+
+.header__buttons_home {
+  text-decoration: none;
+  color: inherit; /* Inherit the color from the button */}
 
 .header__buttons:hover {
   cursor: pointer;

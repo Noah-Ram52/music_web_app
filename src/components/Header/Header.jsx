@@ -1,13 +1,20 @@
 // #CSS
 import "./Header.css";
 
+// #React-Router
+import { Link } from "react-router-dom";
+
 function Header({ onMusicToggle }) {
+
+
   return (
     <header>
       <div className="header">
         <nav className="header__inner">
           <div className="header__main_displays">
-            <button className="header__buttons">Home</button>
+            <button className="header__buttons">
+              <Link to="/" className="header__buttons_home">Home</Link>
+            </button>
             <button
               className="header__buttons"
               onClick={() => onMusicToggle && onMusicToggle("Music Songs")}

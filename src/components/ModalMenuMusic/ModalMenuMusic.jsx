@@ -3,19 +3,35 @@ import "./ModalMenuMusic.css";
 
 // #React
 import { useEffect, useRef, useCallback } from "react";
-function ModalMenuMusic({ isMenuOpen, onClose, title, className }) {
+
+// #React Router
+import { Link } from "react-router-dom";
+
+function ModalMenuMusic({ 
+  isMenuOpen, 
+  onClose, 
+  title, 
+  className, 
+  songsClassicalGenre, 
+  songsJazzGenre, 
+  songsNerdcoreGenre, 
+  songsClassicalArtist, 
+  songsJazzArtist, 
+  songsNerdcoreArtist 
+}) {
+  
   const menuMusicRef = useRef(null);
 
+  // useCallback to memoize the handleClose function, preventing unnecessary re-renders
   const handleClose = useCallback(() => {
-    console.log("Music Genre Menu Closes:", handleClose);
-    if (!isMenuOpen) return; // Bail early if already closed
-    onClose && onClose(); // Single place to control closing
+    console.log("Music Genre Menu Closes");
+    if (!isMenuOpen) return;
+    onClose && onClose();
   }, [isMenuOpen, onClose]);
 
   // Close the menu when clicking outside of it
   useEffect(() => {
     function handleMenuMusicClickOutside(e) {
-      // Close on click outside the menu
       if (
         e.type === "mousedown" &&
         menuMusicRef.current &&
@@ -24,27 +40,25 @@ function ModalMenuMusic({ isMenuOpen, onClose, title, className }) {
         handleClose();
       }
 
-      // Close only on Escape key
       if (e.type === "keydown" && e.key === "Escape") {
         handleClose();
       }
     }
 
-    // Add event listener to opens the menu
-    console.log("Music Genre Menu Opens:", handleMenuMusicClickOutside);
+    console.log("Music Genre Menu Opens");
     document.addEventListener("mousedown", handleMenuMusicClickOutside);
     document.addEventListener("keydown", handleMenuMusicClickOutside);
 
     return () => {
-      // # Event listeners closing the menu
-      // ## Mousedown = click off closes menu
-      // ### Keydown = Hitting escape close menu
       document.removeEventListener("mousedown", handleMenuMusicClickOutside);
       document.removeEventListener("keydown", handleMenuMusicClickOutside);
     };
-  }, [handleClose]); // Depends on handleClose, not onClose directly
+  }, [handleClose]);
 
-  // Event listener closes on Escape
+  // Show SONGS only when title === "Music Songs"
+  const showSongs = title === "Music Songs";
+  // Show ARTISTS only when title === "Music Artist"  
+  const showArtists = title === "Music Artist";
 
   return (
     <div
@@ -53,15 +67,71 @@ function ModalMenuMusic({ isMenuOpen, onClose, title, className }) {
       <div className="menu-music-genre__panel" ref={menuMusicRef}>
         <h2 className="menu-music-genre__title">{title}</h2>
         <ul className="menu-music-genre__list">
-          <button className="menu-music-genre__button_items">
-            <li className="menu-music-genre__item">Classical</li>
-          </button>
-          <button className="menu-music-genre__button_items">
-            <li className="menu-music-genre__item">Jazz</li>
-          </button>
-          <button className="menu-music-genre__button_items">
-            <li className="menu-music-genre__item">Alternative Rock</li>
-          </button>
+          {/* Classical */}
+          <li className="menu-music-genre__item">
+            {showSongs && (
+              <Link 
+                to="/classical-music-songs"
+                className="menu-music-genre__button_items"
+                onClick={handleClose}
+              >
+                {songsClassicalGenre || "Classical"}
+              </Link>
+            )}
+            {showArtists && (
+              <Link 
+                to="/classical-music-artist"
+                className="menu-music-genre__button_items"
+                onClick={handleClose}
+              >
+                {songsClassicalArtist || "Classical Artist"}
+              </Link>
+            )}
+          </li>
+
+          {/* Jazz */}
+          <li className="menu-music-genre__item">
+            {showSongs && (
+              <Link 
+                to="/jazz-music-songs"
+                className="menu-music-genre__button_items"
+                onClick={handleClose}
+              >
+                {songsJazzGenre || "Jazz"}
+              </Link>
+            )}
+            {showArtists && (
+              <Link 
+                to="/jazz-music-artist"
+                className="menu-music-genre__button_items"
+                onClick={handleClose}
+              >
+                {songsJazzArtist || "Jazz Artist"}
+              </Link>
+            )}
+          </li>
+
+          {/* Nerdcore */}
+          <li className="menu-music-genre__item">
+            {showSongs && (
+              <Link 
+                to="/nerdcore-music-songs"
+                className="menu-music-genre__button_items"
+                onClick={handleClose}
+              >
+                {songsNerdcoreGenre || "Nerdcore"}
+              </Link>
+            )}
+            {showArtists && (
+              <Link 
+                to="/nerdcore-music-artist"
+                className="menu-music-genre__button_items"
+                onClick={handleClose}
+              >
+                {songsNerdcoreArtist || "Nerdcore Artist"}
+              </Link>
+            )}
+          </li>
         </ul>
       </div>
     </div>

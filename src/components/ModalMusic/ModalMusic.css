@@ -1,0 +1,38 @@
+.modal-music {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  padding-top: 20px;
+}
+
+.modal-music__title {
+  margin-bottom: 17px;
+}
+
+.modal-music__positioning {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-music__video_container {
+  width: 40%;
+  height: 400px;
+  margin-bottom: 20px;  
+  border-radius: 10px;    
+  overflow: hidden;       
+  position: relative;  
+}
+
+.modal-music__video_container_start {
+margin-right: auto;
+}
+
+.modal-music__video_container_end {
+ margin-left: auto;
+}
+
+.modal-music_video_container_size {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
