@@ -23,11 +23,12 @@ function ModalMusic({
   nerdcoreMusicVideoFour,
   nerdcoreMusicVideoFive,
   nerdcoreMusicVideoSix,
-  videos = []  // NEW: YouTube metadata array
-}) {
+  videos = []  // YouTube metadata array
+}) 
+
+{
   const title = classicalSongTitle || jazzSongTitle || nerdcoreSongTitle;
   
-  // Your ORIGINAL video sources - completely unchanged
   const videoSources = [
     classicalMusicVideoOne || jazzMusicVideoOne || nerdcoreMusicVideoOne,
     classicalMusicVideoTwo || jazzMusicVideoTwo || nerdcoreMusicVideoTwo,

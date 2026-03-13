@@ -49,7 +49,7 @@ function App() {
     }
   }, [location.pathname, navigationType]);
 
-  // NEW: Page refresh detection
+  // Page refresh detection
   useEffect(() => {
     // Show loading on EVERY page load/refresh
     setIsLoadingRoute(true);
