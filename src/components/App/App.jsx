@@ -2,8 +2,11 @@
 import "./App.css";
 
 // #React
-import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+
+// #React-Router
+import { Routes, Route, useLocation, useNavigationType } from "react-router-dom";
 
 // #Components
 import Header from "../Header/Header";
@@ -16,6 +19,7 @@ import JazzMusicSongs from "../Jazz/JazzMusicSongs/JazzMusicSongs";
 import JazzMusicArtist from "../Jazz/JazzMusicArtist/JazzMusicArtist";
 import NerdcoreMusicSongs from "../Nerdcore/NerdcoreMusicSongs/NerdcoreMusicSongs";
 import NerdcoreMusicArtist from "../Nerdcore/NerdcoreMusicArtist/NerdcoreMusicArtist";
+import Preloader from "../Preloader/Preloader";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 
@@ -27,6 +31,22 @@ function App() {
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("");
 
+   // 🔥 NEW: Route change preloader state ADDED
+  const [isLoadingRoute, setIsLoadingRoute] = useState(false);
+  
+  // 🔥 NEW: Get current location and navigation type ADDED
+  const location = useLocation();
+  const navigationType = useNavigationType();
+
+   useEffect(() => {
+    if (navigationType !== "POP") {
+      setIsLoadingRoute(true);
+      const timer = setTimeout(() => {
+        setIsLoadingRoute(false);
+      }, 2250);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname, navigationType]);
 
   // Open the menu with a specific title (e.g. "Music Songs" or "Music Artist")
   const openMusicMenu = (title) => {
@@ -34,13 +54,21 @@ function App() {
     setIsMusicGenreOpen(true);
   };
 
-
+    // 🔥 NEW: Extracted close function (used everywhere) ADDED
+  const closeMusicMenu = () => {
+    setIsMusicGenreOpen(false);
+    setMenuTitle("");
+  };
 
   return (
     <>
       <div className="page">
         <div className="page__content">
-          
+       {isLoadingRoute && (
+            <div className="page__preloader-overlay">
+              <Preloader />
+            </div>
+          )}
           <div className="page__main">
             <Routes>
               <Route
@@ -51,14 +79,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
@@ -76,14 +104,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
@@ -96,14 +124,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
@@ -115,14 +143,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
@@ -136,14 +164,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )} 
@@ -157,14 +185,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}  
@@ -177,14 +205,14 @@ function App() {
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}
                     {isMusicGenreOpen && menuTitle === "Music Artist" && (
                       <MenuMusicArtist
                         isMenuOpen={isMusicGenreOpen}
-                        onClose={() => setIsMusicGenreOpen(false)}
+                        onClose={closeMusicMenu}
                         title={menuTitle}
                       />
                     )}  

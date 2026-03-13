@@ -1,6 +1,5 @@
 // #Components
 import ModalMusic from "../../ModalMusic/ModalMusic";  
-// ↑ Goes UP 2 folders (ClassicalMusicSongs → Classical → components) → ModalMusic folder
 
 // #React
 import { useState, useEffect } from 'react';  
@@ -9,7 +8,7 @@ import { useState, useEffect } from 'react';
 
 // #API
 import { getClassicalVideos } from "../../../utils/api/YoutubeApi";  
-// ↑ Your path: ClassicalMusicSongs → Classical → components → UP 3 → utils → api → YoutubeApi.js ✅ CORRECT
+
 
 function ClassicalMusicSongs() {
   // ↓ State #1: Empty array → will FILL with YouTube video data (titles/thumbnails)
@@ -20,6 +19,7 @@ function ClassicalMusicSongs() {
 
   // ↓ Runs AUTOMATICALLY once when component loads (like page "onload")
   useEffect(() => {
+    // 🔥 THIS shows in Network tab!
     // ↓ Calls your YoutubeApi.js → gets classical music videos
     getClassicalVideos()
       // ↓ Success: Store video data in 'videos' state
@@ -29,6 +29,16 @@ function ClassicalMusicSongs() {
       // ↓ Always runs: Hide loading spinner
       .finally(() => setLoading(false));
   }, []);  // ↑ Empty [] = "run only ONCE, never again"
+
+useEffect(() => {
+  console.log('🔥 Fetching classical videos...');
+  getClassicalVideos()
+    .then(videos => {
+      console.table(videos);  // ← Shows your exact data
+      setVideos(videos);
+    })
+}, []);
+
 
   // ↓ Your ORIGINAL 6 classical videos - these ALWAYS play (YouTube API just adds titles)
   const fallbackVideos = [
@@ -41,7 +51,8 @@ function ClassicalMusicSongs() {
   ];
 
   // ↓ If still fetching → show loading screen
-  if (loading) return <div className="modal-music__loading">Loading classical tracks...</div>;
+  if (loading) return 
+  <div className="modal-music__loading">Loading Classical Music...</div>;
 
   // ↓ SUCCESS! Render ModalMusic with:
   return (
@@ -58,4 +69,4 @@ function ClassicalMusicSongs() {
   );
 }
 
-export default ClassicalMusicSongs;  // ↑ Makes this component usable in App.jsx routes
+export default ClassicalMusicSongs; 

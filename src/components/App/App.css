@@ -12,3 +12,24 @@
 .page__main {
   flex: 1; /* grow to fill space and push footer down [web:1][web:2][web:9] */
 }
+
+
+.page__preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-text {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}

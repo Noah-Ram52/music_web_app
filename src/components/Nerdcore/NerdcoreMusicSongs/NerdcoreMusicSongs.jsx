@@ -18,6 +18,15 @@ function NerdcoreMusicSongs() {
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    console.log('🔥 Fetching nerdcore videos...');
+    getNerdcoreVideos()
+      .then(videos => {
+        console.table(videos);  // ← Shows your exact data
+        setVideos(videos);
+      })
+  }, []);
+
     const fallbackVideos = [
     "https://www.youtube.com/embed/elulJJxASXw?controls=1",
     "https://www.youtube.com/embed/HK6N05s7bQU?controls=1",
@@ -28,7 +37,8 @@ function NerdcoreMusicSongs() {
    
   ];
 
-if (loading) return <div className="modal-music__loading">Loading...</div>;
+if (loading) return 
+<div className="modal-music__loading">Loading Nerdcore Music...</div>;
   
 
   return (

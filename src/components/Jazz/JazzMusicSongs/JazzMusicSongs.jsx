@@ -18,6 +18,15 @@ function JazzMusicSongs() {
       .finally(() => setLoading(false));
   }, []);
 
+useEffect(() => {
+  console.log('🔥 Fetching jazz videos...');
+  getJazzVideos()
+    .then(videos => {
+      console.table(videos);  // ← Shows your exact data
+      setVideos(videos);
+    })
+}, []);
+
   // Your existing hardcoded embeds as fallback
   const fallbackVideos = [
     "https://www.youtube.com/embed/CutrIZzTJl0?controls=1",
@@ -29,7 +38,7 @@ function JazzMusicSongs() {
   ];
 
   if (loading) return 
-  <div className="modal-music__loading">Loading jazz tracks...</div>;
+  <div className="modal-music__loading">Loading Jazz Music...</div>;
 
   return (
     <ModalMusic 

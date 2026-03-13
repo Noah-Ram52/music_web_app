@@ -36,3 +36,15 @@ margin-right: auto;
   height: 100%;
   border: none;
 }
+
+.video-thumbnail,
+.video-title, 
+.video-channel,
+.video-metadata {
+  display: none !important;
+}
+
+/* Keep container structure for spacing */
+.video-metadata {
+  height: 80px; /* Optional: maintain spacing */
+}

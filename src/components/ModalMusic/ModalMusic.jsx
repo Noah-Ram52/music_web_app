@@ -1,4 +1,3 @@
-// src/components/ModalMusic/ModalMusic.jsx
 // #CSS
 import "./ModalMusic.css";
 
@@ -46,7 +45,7 @@ function ModalMusic({
         <div className="modal-music__video_container modal-music__video_container_start">
           {videos[0] && (
             <div>
-              <img src={videos[0].thumbnail} alt={videos[0].title} className="video-thumbnail" />
+              <img src={videos[0].thumbnail}  alt={videos[0].title} className="video-thumbnail" />
               <div>
                 <div className="video-title">{videos[0].title}</div>
                 <div className="video-channel">{videos[0].channel}</div>
