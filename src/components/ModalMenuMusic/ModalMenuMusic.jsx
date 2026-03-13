@@ -24,7 +24,7 @@ function ModalMenuMusic({
 
   // useCallback to memoize the handleClose function, preventing unnecessary re-renders
   const handleClose = useCallback(() => {
-    console.log("Music Genre Menu Closes");
+    console.log("Music Genre/Artist Menu Closes");
     if (!isMenuOpen) return;
     onClose && onClose();
   }, [isMenuOpen, onClose]);
@@ -45,7 +45,7 @@ function ModalMenuMusic({
       }
     }
 
-    console.log("Music Genre Menu Opens");
+    console.log("Music Genre/Artist Menu Opens");
     document.addEventListener("mousedown", handleMenuMusicClickOutside);
     document.addEventListener("keydown", handleMenuMusicClickOutside);
 

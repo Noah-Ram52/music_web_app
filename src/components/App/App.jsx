@@ -31,22 +31,33 @@ function App() {
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("");
 
-   // 🔥 NEW: Route change preloader state ADDED
+  // Loading Route array default set to false.
+  
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
   
-  // 🔥 NEW: Get current location and navigation type ADDED
   const location = useLocation();
   const navigationType = useNavigationType();
 
+  // Whenever button is clicked it will load that button
    useEffect(() => {
     if (navigationType !== "POP") {
       setIsLoadingRoute(true);
       const timer = setTimeout(() => {
         setIsLoadingRoute(false);
-      }, 2250);
+      }, 1250);
       return () => clearTimeout(timer);
     }
   }, [location.pathname, navigationType]);
+
+  // NEW: Page refresh detection
+  useEffect(() => {
+    // Show loading on EVERY page load/refresh
+    setIsLoadingRoute(true);
+    const timer = setTimeout(() => {
+      setIsLoadingRoute(false);
+    }, 2000); // 2 seconds
+    return () => clearTimeout(timer);
+  }, []); // Empty array = runs ONCE per page load
 
   // Open the menu with a specific title (e.g. "Music Songs" or "Music Artist")
   const openMusicMenu = (title) => {
@@ -54,7 +65,7 @@ function App() {
     setIsMusicGenreOpen(true);
   };
 
-    // 🔥 NEW: Extracted close function (used everywhere) ADDED
+    // Extracted close function (used everywhere) ADDED
   const closeMusicMenu = () => {
     setIsMusicGenreOpen(false);
     setMenuTitle("");
