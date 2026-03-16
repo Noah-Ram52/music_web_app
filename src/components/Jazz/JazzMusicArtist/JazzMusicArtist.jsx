@@ -36,7 +36,7 @@ function JazzMusicArtist() {
 
 
 
-    return (
+    return (    
         <ModalArtists 
         firstJazzArtist={jazzArtistImages[0]}
         secondJazzArtist={jazzArtistImages[1]}
@@ -52,7 +52,7 @@ function JazzMusicArtist() {
         secondJazzArtistInfo={jazzArtistInformation[1]}
         thirdJazzArtistInfo={jazzArtistInformation[2]}
         fourthJazzArtistInfo={jazzArtistInformation[3]}
-        fifthCJazzArtistInfo={jazzArtistInformation[4]}
+        fifthJazzArtistInfo={jazzArtistInformation[4]}
         />
     );
 }

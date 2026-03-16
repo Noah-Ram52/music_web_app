@@ -103,7 +103,7 @@ function ModalArtists ({
                 <p className="modal-artists__holder_information">{artistDescription[3]}</p>
                 </div>
             </div>
-            {artistImages[4] && artistDescription[4] && (
+            {(artistNames[4] && artistImages[4] && artistDescription[4]) && (
             <div className="modal-artists__holder">
                 <img className="modal-artists__images" src={artistImages[4]}  />
                 <div className="modal-artists__holder_position">

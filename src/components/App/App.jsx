@@ -4,9 +4,10 @@ import "./App.css";
 // #React
 import { useState, useEffect } from "react";
 
-
 // #React-Router
 import { Routes, Route, useLocation, useNavigationType } from "react-router-dom";
+
+
 
 // #Components
 import Header from "../Header/Header";
@@ -27,14 +28,13 @@ function App() {
   // ## State for toggling the music genre menu
   // toggleMusicGenre flips it between false and true
   // isMusicGenreOpen controls whether the menu/modal is open
-
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("");
 
   // Loading Route array default set to false.
-  
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
   
+
   const location = useLocation();
   const navigationType = useNavigationType();
 
@@ -71,6 +71,7 @@ function App() {
     setMenuTitle("");
   };
 
+
   return (
     <>
       <div className="page">
@@ -86,7 +87,11 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <Header onMusicToggle={openMusicMenu} />
+                    <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
@@ -106,11 +111,16 @@ function App() {
                   </>
                 }
               />
+              
               <Route 
               path="/classical-music-songs" 
               element={ 
               <>
-                    <Header onMusicToggle={openMusicMenu} />
+                    <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -131,7 +141,11 @@ function App() {
               }>
              </Route>
              <Route path="/classical-music-artist" element={ <>
-                    <Header onMusicToggle={openMusicMenu} />
+                    <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
@@ -150,7 +164,11 @@ function App() {
                </>} />
              <Route path="/jazz-music-songs" element={  
               <>
-                    <Header onMusicToggle={openMusicMenu} />
+                    <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
@@ -171,7 +189,11 @@ function App() {
             } />
              <Route path="/jazz-music-artist" element={ 
                <>
-                <Header onMusicToggle={openMusicMenu} />
+                <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
@@ -192,7 +214,11 @@ function App() {
                 />
              <Route path="/nerdcore-music-songs" element={
                <> 
-                <Header onMusicToggle={openMusicMenu} />
+                <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}
@@ -212,7 +238,11 @@ function App() {
                />
              <Route path="/nerdcore-music-artist" element={ 
               <>
-                <Header onMusicToggle={openMusicMenu} />
+                <Header 
+                    onMusicToggle={openMusicMenu} 
+                    isLoggedIn={isLoggedIn}
+                    onLoginClick={openAuthModal} 
+                    />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
                         isMenuOpen={isMusicGenreOpen}

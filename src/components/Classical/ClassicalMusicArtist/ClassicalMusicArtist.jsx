@@ -10,14 +10,6 @@ import Frederic_Chopin from "../../../assets/images/Frederic_Chopin.jpeg"
 
 function ClassicalMusicArtist() {
 
-     const classicalArtistImages = [
-        Beethoven,
-        Gunnarsson,
-        Christophe_Luciani,
-        Franz_Liszt,
-        Frederic_Chopin
-    ];
-
     const classicalArtistsNames = [
       "Beethoven",
       "Gunnarsson",
@@ -25,6 +17,14 @@ function ClassicalMusicArtist() {
       "Franz Liszt",
       "Frederic Chopin"
     ]
+
+       const classicalArtistImages = [
+        Beethoven,
+        Gunnarsson,
+        Christophe_Luciani,
+        Franz_Liszt,
+        Frederic_Chopin
+    ];
 
     const classicalArtistInformation = [
       `Ludwig van Beethoven forged classical music's emotional core through symphonic architecture that weaponized sonata form against Classical restraint, launching Fourth Symphony's first movement with throbbing unison strings building tectonic tension before explosive horn entries shatter the horizon—his development sections became psychological battlegrounds where motivic cells fragmented into chromatic fugues then reassembled as triumphant recapitulations; the Ninth Symphony's choral finale deploys "Ode to Joy" as secular mass with Turkish march percussion and bass soloist proclaiming brotherhood over orchestral thunder, while late string quartets like Op. 131 dissolve tonality boundaries through continuous seven-movement structures where canons invert across disembodied pizzicato, all composed after total deafness turned inner ear into cosmic cathedral.`, 
