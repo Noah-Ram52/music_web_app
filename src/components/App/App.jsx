@@ -23,6 +23,8 @@ import NerdcoreMusicArtist from "../Nerdcore/NerdcoreMusicArtist/NerdcoreMusicAr
 import Preloader from "../Preloader/Preloader";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
+import ModalLoginSignup from "../ModalLoginSignup/ModalLoginSignup";
+import UserLogin from "../UserLogin/UserLogin";
 
 function App() {
   // ## State for toggling the music genre menu
@@ -30,6 +32,8 @@ function App() {
   // isMusicGenreOpen controls whether the menu/modal is open
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("");
+
+
 
   // Loading Route array default set to false.
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
@@ -65,7 +69,7 @@ function App() {
     setIsMusicGenreOpen(true);
   };
 
-    // Extracted close function (used everywhere) ADDED
+  // Extracted close function (used everywhere) ADDED
   const closeMusicMenu = () => {
     setIsMusicGenreOpen(false);
     setMenuTitle("");
@@ -89,8 +93,7 @@ function App() {
                   <>
                     <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                    
                     />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -105,6 +108,12 @@ function App() {
                         onClose={closeMusicMenu}
                         title={menuTitle}
                       />
+                    )}
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                       <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
+                       />
                     )}
                     <Main />
                     <About />
@@ -118,8 +127,7 @@ function App() {
               <>
                     <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                   
                     />
                     
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
@@ -134,6 +142,12 @@ function App() {
                         isMenuOpen={isMusicGenreOpen}
                         onClose={closeMusicMenu}
                         title={menuTitle}
+                      />
+                    )}
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                      <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
                       />
                     )}
                     <ClassicalMusicSongs />
@@ -143,8 +157,7 @@ function App() {
              <Route path="/classical-music-artist" element={ <>
                     <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                   
                     />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -158,6 +171,12 @@ function App() {
                         isMenuOpen={isMusicGenreOpen}
                         onClose={closeMusicMenu}
                         title={menuTitle}
+                      />
+                    )}
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                      <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
                       />
                     )}
                     <ClassicalMusicArtist />
@@ -166,8 +185,7 @@ function App() {
               <>
                     <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                    
                     />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -183,7 +201,12 @@ function App() {
                         title={menuTitle}
                       />
                     )}
-                    
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                      <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
+                      />
+                    )}
                  <JazzMusicSongs /> 
              </> 
             } />
@@ -191,8 +214,7 @@ function App() {
                <>
                 <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                   
                     />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -208,6 +230,12 @@ function App() {
                         title={menuTitle}
                       />
                     )} 
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                      <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
+                      />
+                    )}
                     <JazzMusicArtist /> 
                   </>
                 } 
@@ -216,8 +244,7 @@ function App() {
                <> 
                 <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                 
                     />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -233,6 +260,12 @@ function App() {
                         title={menuTitle}
                       />
                     )}  
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                      <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
+                      />
+                    )}
                     <NerdcoreMusicSongs /> 
                </>} 
                />
@@ -240,8 +273,7 @@ function App() {
               <>
                 <Header 
                     onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    onLoginClick={openAuthModal} 
+                   
                     />
                     {isMusicGenreOpen && menuTitle === "Music Songs" && (
                       <MusicGenreSongsList
@@ -257,6 +289,12 @@ function App() {
                         title={menuTitle}
                       />
                     )}  
+                    {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
+                      <UserLogin 
+                        isMenuOpen={isMusicGenreOpen}
+                        onClose={closeMusicMenu}
+                      />
+                    )}
                     <NerdcoreMusicArtist /> 
                     </>
                   } 

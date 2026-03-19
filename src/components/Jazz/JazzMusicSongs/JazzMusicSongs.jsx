@@ -5,7 +5,7 @@ import ModalMusic from "../../ModalMusic/ModalMusic";
 import { useState, useEffect } from 'react';
 
 // #API
-import { getJazzVideos } from '../../../utils/api/YoutubeApi';
+import { getJazzVideos } from '../../../utils/YoutubeApi';
 
 function JazzMusicSongs() {
   const [videos, setVideos] = useState([]);

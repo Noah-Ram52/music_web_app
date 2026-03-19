@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 //   useEffect = automatically fetch videos when page loads
 
 // #API
-import { getClassicalVideos } from "../../../utils/api/YoutubeApi";  
+import { getClassicalVideos } from "../../../utils/YoutubeApi";  
 
 
 function ClassicalMusicSongs() {

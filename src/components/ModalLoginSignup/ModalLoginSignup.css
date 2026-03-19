@@ -1,0 +1,83 @@
+.modal-login-signup {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; 
+}
+
+.modal-login-signup__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;    /* ← CHANGE: align-items instead of align-content */
+  position: absolute;     /* ← ADD */
+  top: 50%;               /* ← ADD */
+  left: 50%;              /* ← ADD */
+  transform: translate(-50%, -50%); /* ← ADD: perfect center */
+  width: 100%;
+  height: 100%;
+}
+
+.modal-login-signup__modal_size {
+  width: 480px;
+  max-width: 90vw;        /* ← CHANGE: responsive */
+  min-height: 300px;      /* ← ADD: visible height */
+  background: white;      /* ← ADD: white background */
+  border-radius: 12px;    /* ← ADD: rounded corners */
+  padding: 2rem;          /* ← ADD: inner spacing */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* ← ADD: shadow */
+  color: #333;            /* ← ADD: visible text color */
+}
+
+.modal-login-signup__header {
+  display: flex;
+  justify-content: space-between;  /* ← ADD THIS */
+  align-items: center;             /* ← ADD THIS (vertical center) */
+}
+
+.modal-login-signup__title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+
+.modal-login-signup__close {
+  margin-left: auto;     /* ← OPTIONAL: extra push to right */
+  width: 30px;
+  cursor: pointer;       /* ← ADD: hand cursor */
+  bottom: 20px;
+  position: relative;
+}
+
+.modal-login-signup__email_password {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.modal-login-signup__email_box {
+    padding-bottom: 50px;
+}
+
+.modal-login-signup__email_password_text {
+    margin-bottom: 20px;
+}
+
+.modal-login-signup__footer {
+  display: flex;
+  justify-content: space-between;  /* ← ADD THIS */
+  align-items: center;             /* ← ADD THIS (vertical center) */
+}
+
+.modal-login-signup__login_password_button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    width: 180px;
+    height: 60px;
+    margin-top: 35px;
+    margin-right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}

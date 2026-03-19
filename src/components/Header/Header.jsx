@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 
 function Header({ onMusicToggle }) {
 
-  
-
   return (
     <header>
       <div className="header">
@@ -31,7 +29,11 @@ function Header({ onMusicToggle }) {
             <button className="header__buttons">About</button>
           </div>
           <div className="header__login-bar">
-            <button className="header__login">Login or Sign Up</button>
+            <button className="header__login"
+            onClick={() => onMusicToggle && onMusicToggle("Login or Sign Up")}
+            >
+              Login or Sign Up
+              </button>
           </div>
         </nav>
       </div>

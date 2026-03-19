@@ -5,7 +5,7 @@ import ModalMusic from "../../ModalMusic/ModalMusic";
 import { useState, useEffect } from 'react';
 
 // #API
-import { getNerdcoreVideos } from '../../../utils/api/YoutubeApi';
+import { getNerdcoreVideos } from '../../../utils/YoutubeApi';
 
 function NerdcoreMusicSongs() {
   const [videos, setVideos] = useState([]);
