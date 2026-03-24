@@ -1,4 +1,3 @@
-// src/utils/auth.js (or wherever your YoutubeApi.js lives)
 export const authorize = (email, password) => {
   // Pretend we did a fetch request that gave us back a token
   return new Promise((resolve, reject) => {
@@ -6,11 +5,13 @@ export const authorize = (email, password) => {
       // Fake validation - accept any non-empty email/password
       if (email && password && email.includes('@')) {
         const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyMSIsImVtYWlsIjoieW91ckBlbWFpbC5jb20iLCJpYXQiOjE3MDk5OTk5OTl9.fakeSignature";
+        const usernameFromEmail = email.split("@")[0];
+        const displayName = capitalizeFirst(usernameFromEmail); // ← use helper
         resolve({ 
           token: fakeToken,
           user: { 
             email, 
-            name: email.split('@')[0] 
+            name: displayName, 
           }
         });
       } else {
@@ -28,7 +29,7 @@ export const checkToken = (token) => {
       if (token && token.includes('eyJ')) {
         resolve({
           data: { 
-            name: "verified user", 
+            name: "Test User", 
             email: "fake@example.com", 
             _id: "fake-user-id-123" 
           }
@@ -39,6 +40,9 @@ export const checkToken = (token) => {
     }, 300); // Simulate network delay
   });
 };
+
+export const capitalizeFirst = (str = "") =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 export const logout = () => {
   // Pretend we called a logout API

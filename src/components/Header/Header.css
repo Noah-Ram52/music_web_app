@@ -77,6 +77,11 @@
   transform: scale(1.2);
 }
 
+.header__user {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Background color animation */
 @keyframes header-animation {
   0% {
