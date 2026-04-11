@@ -1,6 +1,6 @@
-# React + Vite
+# Music Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project includes 3 different types of genres. The three types are Classical, Jazz, & Nerdcore genres. You can create and log in to an
 
 Currently, two official plugins are available:
 

@@ -23,7 +23,10 @@ function ModalMusic({
   nerdcoreMusicVideoFour,
   nerdcoreMusicVideoFive,
   nerdcoreMusicVideoSix,
-  videos = []  // YouTube metadata array
+  videos = [],  // YouTube metadata array
+  favorites = [], // Array of favorite items
+  onToggleFavorite, // Function to toggle favorites
+  isLoggedIn
 }) 
 
 {
@@ -38,6 +41,31 @@ function ModalMusic({
     classicalMusicVideoSix || jazzMusicVideoSix || nerdcoreMusicVideoSix
   ];
 
+const isVideoSaved = (index) => {
+  return favorites.some(
+    (fav) =>
+      fav.genre === title &&
+      fav.type === "video" &&
+      fav.videoIndex === index
+  );
+};
+
+
+
+// Toggle favorite for specific video
+  const toggleVideoFavorite = (index) => {
+    onToggleFavorite({
+      genre: title,
+      type: "video",
+      videoIndex: index,
+      title: videos[index]?.title,
+      channel: videos[index]?.channel,
+      thumbnail: videos[index]?.thumbnail,
+      embedUrl: videoSources[index] || ""
+    });
+  };
+
+  
   return (
     <div className="modal-music">
       <div className="modal-music__title">{title}</div>
@@ -61,6 +89,16 @@ function ModalMusic({
             allowFullScreen
             title="Music Video 1"
           />
+          {/* 🟢 STAR: only for logged-in users */}
+          {isLoggedIn && (
+          <button 
+            className="video-favorite-star"
+            onClick={() => toggleVideoFavorite(0)}
+            title="Favorite video"
+          >
+            {isVideoSaved(0) ? "⭐" : "☆"}
+          </button>
+          )}
         </div>
 
         {/* VIDEO 2 */}
@@ -82,6 +120,15 @@ function ModalMusic({
             allowFullScreen
             title="Music Video 2"
           />
+          {isLoggedIn && (
+          <button 
+            className="video-favorite-star"
+            onClick={() => toggleVideoFavorite(1)}
+            title="Favorite video"
+          >
+            {isVideoSaved(1) ? "⭐" : "☆"}
+          </button>
+          )}
         </div>
 
         {/* VIDEO 3 */}
@@ -103,6 +150,15 @@ function ModalMusic({
             allowFullScreen
             title="Music Video 3"
           />
+          {isLoggedIn && (
+          <button 
+            className="video-favorite-star"
+            onClick={() => toggleVideoFavorite(2)}
+            title="Favorite video"
+          >
+            {isVideoSaved(2) ? "⭐" : "☆"}
+          </button>
+          )}
         </div>
 
         {/* VIDEO 4 */}
@@ -124,6 +180,15 @@ function ModalMusic({
             allowFullScreen
             title="Music Video 4"
           />
+          {isLoggedIn && (
+          <button 
+            className="video-favorite-star"
+            onClick={() => toggleVideoFavorite(3)}
+            title="Favorite video"
+          >
+            {isVideoSaved(3) ? "⭐" : "☆"}
+          </button>
+          )}
         </div>
 
         {/* VIDEO 5 */}
@@ -145,6 +210,15 @@ function ModalMusic({
             allowFullScreen
             title="Music Video 5"
           />
+          {isLoggedIn && (
+          <button 
+            className="video-favorite-star"
+            onClick={() => toggleVideoFavorite(4)}
+            title="Favorite video"
+          >
+            {isVideoSaved(4) ? "⭐" : "☆"}
+          </button>
+          )}
         </div>
 
         {/* VIDEO 6 */}
@@ -166,6 +240,15 @@ function ModalMusic({
             allowFullScreen
             title="Music Video 6"
           />
+          {isLoggedIn && (
+          <button 
+            className="video-favorite-star"
+            onClick={() => toggleVideoFavorite(5)}
+            title="Favorite video"
+          >
+            {isVideoSaved(5) ? "⭐" : "☆"}
+          </button>
+          )}
         </div>
       </div>
     </div>

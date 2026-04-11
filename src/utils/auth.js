@@ -1,54 +1,61 @@
-export const authorize = (email, password) => {
-  // Pretend we did a fetch request that gave us back a token
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Fake validation - accept any non-empty email/password
-      if (email && password && email.includes('@')) {
-        const fakeToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyMSIsImVtYWlsIjoieW91ckBlbWFpbC5jb20iLCJpYXQiOjE3MDk5OTk5OTl9.fakeSignature";
-        const usernameFromEmail = email.split("@")[0];
-        const displayName = capitalizeFirst(usernameFromEmail); // ← use helper
-        resolve({ 
-          token: fakeToken,
-          user: { 
-            email, 
-            name: displayName, 
-          }
-        });
-      } else {
-        reject(new Error("Invalid email or password"));
-      }
-    }, 500); // Simulate network delay
+const API_URL = 'http://localhost:3001/api';
+
+export const authorize = async (email, password) => {
+  const response = await fetch(`${API_URL}/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
   });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Login failed');
+  }
+  
+  return response.json();  // Returns: { token, user: { id, name, email } }
 };
 
-export const checkToken = (token) => {
-  // Pretend we did a fetch request that gave us back a user
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      // Fake token validation - accept any token that looks real
-      if (token && token.includes('eyJ')) {
-        resolve({
-          data: { 
-            name: "Test User", 
-            email: "fake@example.com", 
-            _id: "fake-user-id-123" 
-          }
-        });
-      } else {
-        reject(new Error("Invalid token"));
-      }
-    }, 300); // Simulate network delay
+export const signup = async (name, email, password) => {
+  const response = await fetch(`${API_URL}/auth/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, email, password })
   });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Signup failed');
+  }
+  
+  return response.json();  // Returns: { token, user: { id, name, email } }
+};
+
+export const checkToken = async (token) => {
+  if (!token) throw new Error('No token provided');
+  
+  const response = await fetch(`${API_URL}/auth`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Invalid token');
+  }
+  
+  const data = await response.json();
+  return { data };  // Matches your old format: { data: { name, email, _id } }
 };
 
 export const capitalizeFirst = (str = "") =>
   str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 export const logout = () => {
-  // Pretend we called a logout API
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ message: "Logged out successfully" });
-    }, 200);
-  });
+  localStorage.removeItem('token');
+  return Promise.resolve({ message: 'Logged out successfully' });
 };

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigationType } from "react-router-dom";
 
 // #Components
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Header from "../Header/Header";
 import MusicGenreSongsList from "../MenuMusicGenreList/MusicGenreSongsList";
 import MenuMusicArtist from "../MenuMusicArtist/MenuMusicArtist";
@@ -22,13 +23,16 @@ import Preloader from "../Preloader/Preloader";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 
+
 // #Components regarding Users
 import UserLogin from "../UserLogin/UserLogin";
 import UserSignup from "../UserSignup/UserSignup";
 import UserProfile from "../UserProfile/UserProfile";
+import ProfileInformation from "../ProfileInformation/ProfileInformation";
+import FavoritedUserSongs from "../FavoritedUserSongs/FavoritedUserSongs";
 
 // #Authentication
-import { authorize, checkToken, logout } from "../../utils/auth"; // adjust path as needed
+import { authorize, checkToken, logout, signup} from "../../utils/auth"; // adjust path as needed
 
 
 function App() {
@@ -49,6 +53,20 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  // const [favorites, setFavorites] = useState(() => {
+  //   const stored = localStorage.getItem("favorites");
+  //   return stored ? JSON.parse(stored) : [];
+  // });
+
+    const [favorites, setFavorites] = useState(() => {
+      const storedUser = localStorage.getItem("user");
+      const user = storedUser ? JSON.parse(storedUser) : null;
+      const key = user ? `favorites_${user.email}` : "favorites";
+      const stored = localStorage.getItem(key);
+      return stored ? JSON.parse(stored) : [];
+    });
 
   const location = useLocation();
   const navigationType = useNavigationType();
@@ -74,18 +92,41 @@ function App() {
     return () => clearTimeout(timer);
   }, []); // Empty array = runs ONCE per page load
 
+  const handleSignup = async (name, email, password) => {
+    try {
+      setLoginError("");
+      const response = await signup(name, email, password);
+      await handleLogin(email, password);
+    
+    } catch (error) {
+      setLoginError(error.message);
+      console.error("Signup failed:", error.message);
+    }
+  };
 
 // 🟢 NEW LOGIN HANDLER
+
+
 const handleLogin = async (email, password) => {
   try {
     setLoginError("");
     const response = await authorize(email, password);
     localStorage.setItem("user_jwt", response.token);
-    localStorage.setItem("user", JSON.stringify(response.user));
+    
+    console.log("FULL LOGIN RESPONSE:", response);
+
+    // 🟢 Capitalize first letter of username from email
+    const username = email.split('@')[0];  // "john" from "john@example.com"
+    const capitalizedName = username.charAt(0).toUpperCase() + username.slice(1);
+
+    // 🟢 SIMPLE: Use email as display name
+    const displayUser = { name: capitalizedName, email };
+    localStorage.setItem("user", JSON.stringify(displayUser));
+    
     setIsLoggedIn(true);
-    setUser(response.user);
+    setUser(displayUser);
     closeMusicMenu();
-    console.log("Login successful:", response.user);
+    console.log("Login successful:", displayUser.name);
   } catch (error) {
     setLoginError(error.message);
     console.error("Login failed:", error.message);
@@ -93,20 +134,39 @@ const handleLogin = async (email, password) => {
 };
 
 // 🟢 NEW CHECK TOKEN ON START
+
 useEffect(() => {
   const token = localStorage.getItem("user_jwt");
   if (token) {
     checkToken(token)
       .then((response) => {
+
         setIsLoggedIn(true);
+        
         setUser({ email: response.data.email, name: response.data.name });
+
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Token check failed:", error); // Add logging
         localStorage.removeItem("user_jwt");
         localStorage.removeItem("user");
+        setIsLoggedIn(false);
+        setUser(null);
       });
   }
 }, []);
+
+useEffect(() => {
+  if (user) {
+    const key = `favorites_${user.email}`;
+    const stored = localStorage.getItem(key);
+    setFavorites(stored ? JSON.parse(stored) : []);
+  }
+}, [user]);
 
 const handleLogout = () => {
   setIsLoggedIn(false);
@@ -115,6 +175,34 @@ const handleLogout = () => {
   localStorage.removeItem("user");
 };
 
+// Toggle favorite function to add/remove items from favorites list and sync with localStorage
+const toggleFavorite = (item) => {
+  setFavorites((prev) => {
+    const storedUser = localStorage.getItem("user");
+    const user = storedUser ? JSON.parse(storedUser) : null;
+    const key = user ? `favorites_${user.email}` : "favorites";
+    
+    const exists = prev.some(
+      (fav) => fav.genre === item.genre &&
+      fav.type === item.type &&
+      fav.videoIndex === item.videoIndex
+    );
+
+    const updated = exists
+      ? prev.filter(
+          (fav) =>
+            !(
+              fav.genre === item.genre &&
+              fav.type === item.type &&
+              fav.videoIndex === item.videoIndex
+            )
+        )
+      : [...prev, item];
+
+    localStorage.setItem(key, JSON.stringify(updated));
+    return updated;
+  });
+};
 
   // Open the menu with a specific title (e.g. "Music Songs" or "Music Artist")
   const openMusicMenu = (title) => {
@@ -131,6 +219,8 @@ const handleLogout = () => {
     setMenuTitle("");
   };
 
+  const openProfile = () => setIsProfileOpen(true);
+  const closeProfile = () => setIsProfileOpen(false);
 
   return (
     <>
@@ -183,6 +273,7 @@ const handleLogout = () => {
                           isMenuOpen={isMusicGenreOpen}
                           onClose={closeMusicMenu}
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}    // 🟢 NEW
                         />
                       )
                     )}
@@ -192,9 +283,10 @@ const handleLogout = () => {
                 }
               />
               <Route 
-              path="/profile"
-              element={
-                <>
+                path="/profile"
+                element={
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <>
                     <Header 
                     onMusicToggle={openMusicMenu} 
                     isLoggedIn={isLoggedIn}
@@ -219,15 +311,29 @@ const handleLogout = () => {
 
                     <UserProfile 
                     user={user}
-                    onLogout={handleLogout} 
+                    onLogout={handleLogout}
+                    onOpenProfile={openProfile}  
+                    favorites={favorites}
                     />
+                    {isProfileOpen && (
+                  <div className="page__overlay" onClick={closeProfile}>
+                 <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
+                  <ProfileInformation 
+                  user={user} 
+                  favorites={favorites} 
+                  onClose={closeProfile} />
+                   </div>
+                   </div>
+                  )}
                </>
+              </ProtectedRoute>
               }  
               />
               <Route 
               path="/classical-music-songs" 
               element={ 
               <>
+              
                     <Header 
                     onMusicToggle={openMusicMenu} 
                     isLoggedIn={isLoggedIn}
@@ -257,6 +363,9 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches to signup
                           onSwitchToSignup={() => setAuthView("signup")}
+                          onLogin={handleLogin}         
+                          loginError={loginError}        
+                          isLoggedIn={isLoggedIn}       
                         />
                       ) : (
                         <UserSignup
@@ -264,10 +373,15 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches back to login
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}
                         />
                       )
                     )}
-                    <ClassicalMusicSongs />
+                        <ClassicalMusicSongs 
+                          favorites={favorites}
+                          onToggleFavorite={toggleFavorite}
+                          isLoggedIn={isLoggedIn}
+                        />
                </>
               }>
              </Route>
@@ -300,6 +414,9 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches to signup
                           onSwitchToSignup={() => setAuthView("signup")}
+                          onLogin={handleLogin}         
+                          loginError={loginError}        
+                          isLoggedIn={isLoggedIn}   
                         />
                       ) : (
                         <UserSignup
@@ -307,6 +424,7 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches back to login
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}
                         />
                       )
                     )}
@@ -342,6 +460,9 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches to signup
                           onSwitchToSignup={() => setAuthView("signup")}
+                          onLogin={handleLogin}         
+                          loginError={loginError}        
+                          isLoggedIn={isLoggedIn}       
                         />
                       ) : (
                         <UserSignup
@@ -349,10 +470,15 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches back to login
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}
                         />
                       )
                     )}
-                 <JazzMusicSongs /> 
+                 <JazzMusicSongs 
+                    favorites={favorites}
+                    onToggleFavorite={toggleFavorite}
+                    isLoggedIn={isLoggedIn}
+                 /> 
              </> 
             } />
              <Route path="/jazz-music-artist" element={ 
@@ -385,6 +511,9 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches to signup
                           onSwitchToSignup={() => setAuthView("signup")}
+                          onLogin={handleLogin}         
+                          loginError={loginError}        
+                          isLoggedIn={isLoggedIn}       
                         />
                       ) : (
                         <UserSignup
@@ -392,6 +521,7 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches back to login
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}
                         />
                       )
                     )}
@@ -429,6 +559,9 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches to signup
                           onSwitchToSignup={() => setAuthView("signup")}
+                          onLogin={handleLogin}         
+                          loginError={loginError}        
+                          isLoggedIn={isLoggedIn}       
                         />
                       ) : (
                         <UserSignup
@@ -436,10 +569,15 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches back to login
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}
                         />
                       )
                     )}
-                    <NerdcoreMusicSongs /> 
+                    <NerdcoreMusicSongs 
+                    favorites={favorites}
+                    onToggleFavorite={toggleFavorite}
+                    isLoggedIn={isLoggedIn}
+                    /> 
                </>} 
                />
              <Route path="/nerdcore-music-artist" element={ 
@@ -472,6 +610,9 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches to signup
                           onSwitchToSignup={() => setAuthView("signup")}
+                          onLogin={handleLogin}         
+                          loginError={loginError}        
+                          isLoggedIn={isLoggedIn}       
                         />
                       ) : (
                         <UserSignup
@@ -479,6 +620,7 @@ const handleLogout = () => {
                           onClose={closeMusicMenu}
                           // ⭐ pass callback that switches back to login
                           onSwitchToLogin={() => setAuthView("login")}
+                          onSignup={handleSignup}
                         />
                       )
                     )}
@@ -486,7 +628,7 @@ const handleLogout = () => {
                     </>
                   } 
                   />
-                  
+                 
             </Routes>
           </div>
           <Footer />

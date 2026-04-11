@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalLoginSignup from "../ModalLoginSignup/ModalLoginSignup";
 
-function UserSignup({ onClose, isMenuOpen, onSwitchToLogin }) {
+function UserSignup({ onClose, isMenuOpen, onSwitchToLogin, onSignup}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +20,7 @@ function UserSignup({ onClose, isMenuOpen, onSwitchToLogin }) {
     }
 
     setError("");
-
+    onSignup(name, email, password);  // Call the passed-in signup function
     // Simulate signup (or call a real API later)
     console.log("Signup submitted:", { name, email, password });
 

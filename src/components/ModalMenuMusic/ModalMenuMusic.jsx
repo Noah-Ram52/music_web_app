@@ -17,7 +17,9 @@ function ModalMenuMusic({
   songsNerdcoreGenre, 
   songsClassicalArtist, 
   songsJazzArtist, 
-  songsNerdcoreArtist 
+  songsNerdcoreArtist,
+  favorites = [],
+  onToggleFavorite
 }) {
   
   const menuMusicRef = useRef(null);
@@ -28,6 +30,15 @@ function ModalMenuMusic({
     if (!isMenuOpen) return;
     onClose && onClose();
   }, [isMenuOpen, onClose]);
+
+  // Check if genre/type is saved
+  const isSaved = (genre, type) => {
+   return favorites.some((fav) => fav.genre === genre && fav.type === type);
+  };
+
+  const handleStarClick = (item) => {
+   onToggleFavorite?.(item);
+  };
 
   // Close the menu when clicking outside of it
   useEffect(() => {
@@ -69,6 +80,7 @@ function ModalMenuMusic({
         <ul className="menu-music-genre__list">
           {/* Classical */}
           <li className="menu-music-genre__item">
+            <div className="genre-row">
             {showSongs && (
               <Link 
                 to="/classical-music-songs"
@@ -87,6 +99,8 @@ function ModalMenuMusic({
                 {songsClassicalArtist || "Classical Artist"}
               </Link>
             )}
+            
+            </div>
           </li>
 
           {/* Jazz */}

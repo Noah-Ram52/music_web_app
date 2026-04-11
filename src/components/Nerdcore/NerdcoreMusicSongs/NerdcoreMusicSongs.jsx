@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 // #API
 import { getNerdcoreVideos } from '../../../utils/YoutubeApi';
 
-function NerdcoreMusicSongs() {
+function NerdcoreMusicSongs({ favorites = [], onToggleFavorite, isLoggedIn }) {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,14 +18,14 @@ function NerdcoreMusicSongs() {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    console.log('🔥 Fetching nerdcore videos...');
-    getNerdcoreVideos()
-      .then(videos => {
-        console.table(videos);  // ← Shows your exact data
-        setVideos(videos);
-      })
-  }, []);
+  // useEffect(() => {
+  //   console.log('🔥 Fetching nerdcore videos...');
+  //   getNerdcoreVideos()
+  //     .then(videos => {
+  //       console.table(videos);  // ← Shows your exact data
+  //       setVideos(videos);
+  //     })
+  // }, []);
 
     const fallbackVideos = [
     "https://www.youtube.com/embed/elulJJxASXw?controls=1",
@@ -51,6 +51,9 @@ if (loading) return
       nerdcoreMusicVideoFive={fallbackVideos[4]}
       nerdcoreMusicVideoSix={fallbackVideos[5]}
       videos={videos}
+      favorites={favorites}
+      onToggleFavorite={onToggleFavorite}  
+      isLoggedIn={isLoggedIn}
    />
   );
 }

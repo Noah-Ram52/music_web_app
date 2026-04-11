@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { getClassicalVideos } from "../../../utils/YoutubeApi";  
 
 
-function ClassicalMusicSongs() {
+function ClassicalMusicSongs({ favorites = [], onToggleFavorite, isLoggedIn={isLoggedIn} }) {
   // ↓ State #1: Empty array → will FILL with YouTube video data (titles/thumbnails)
   const [videos, setVideos] = useState([]);
   
@@ -53,7 +53,7 @@ useEffect(() => {
   // ↓ If still fetching → show loading screen
   if (loading) return 
   <div className="modal-music__loading">Loading Classical Music...</div>;
-
+ 
   // ↓ SUCCESS! Render ModalMusic with:
   return (
     <ModalMusic 
@@ -64,7 +64,10 @@ useEffect(() => {
       classicalMusicVideoFour={fallbackVideos[3]}             // ↑ Plays video #4
       classicalMusicVideoFive={fallbackVideos[4]}             // ↑ Plays video #5
       classicalMusicVideoSix={fallbackVideos[5]}              // ↑ Plays video #6
-      videos={videos}                                         // ↑ Shows titles/thumbnails OVER videos
+      videos={videos} // ↑ YouTube API data (titles/thumbnails)
+      favorites={favorites}
+      onToggleFavorite={onToggleFavorite}   
+      isLoggedIn={isLoggedIn} 
     />
   );
 }

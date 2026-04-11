@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 // #API
 import { getJazzVideos } from '../../../utils/YoutubeApi';
 
-function JazzMusicSongs() {
+function JazzMusicSongs({ favorites = [], onToggleFavorite, isLoggedIn }) {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,6 +50,9 @@ useEffect(() => {
       jazzMusicVideoFive={fallbackVideos[4]}
       jazzMusicVideoSix={fallbackVideos[5]}
       videos={videos}
+      favorites={favorites}
+      onToggleFavorite={onToggleFavorite}  
+      isLoggedIn={isLoggedIn}
     />
   );
 }
