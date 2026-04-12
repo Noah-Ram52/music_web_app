@@ -1,15 +1,15 @@
 # Music Web App
 
-This project includes 3 different types of genres. The three types are Classical, Jazz, & Nerdcore genres. You can create and log in to an
+This project includes 3 different types of genres. The three types are Classical, Jazz, & Nerdcore genres. You can create and log in accounts. You can also see the artists as well.
 
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## User Implementation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+In the backend there is user implementation using different types of requests. In the [backend](music_web_app_express) you will be able to view it.
 
 ## Expanding the ESLint configuration
 
