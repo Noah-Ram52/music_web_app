@@ -1,6 +1,6 @@
 # Music Web App
 
-This project includes 3 different types of genres. The three types are Classical, Jazz, & Nerdcore genres. You can create and log in accounts. You can also see the artists as well.
+This project includes 3 different types of genres. The three types are Classical, Jazz, & Nerdcore genres. You can create and log in accounts in the back-end. You can also see the artists as well.
 
 Currently, two official plugins are available:
 
@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## User Implementation
 
-In the backend there is user implementation using different types of requests. In the [backend](music_web_app_express) you will be able to view it.
+In the backend there is user implementation using different types of requests. In the [back-end](https://github.com/Noah-Ram52/se_project_express) you will be able to view it. This handles the data in the back for users and errors. 
 
 ## Expanding the ESLint configuration
 
