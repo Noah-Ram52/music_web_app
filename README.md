@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## User Implementation
 
-In the backend there is user implementation using different types of requests. In the [back-end](https://github.com/Noah-Ram52/se_project_express) you will be able to view it. This handles the data in the back for users and errors. 
+In the backend there is user implementation using different types of requests. In the [back-end](https://github.com/Noah-Ram52/music_web_app_express) you will be able to view it. This handles the data in the back for users and errors. 
 
 ## Expanding the ESLint configuration
 
