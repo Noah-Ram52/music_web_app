@@ -18,8 +18,6 @@ function ModalMenuMusic({
   songsClassicalArtist, 
   songsJazzArtist, 
   songsNerdcoreArtist,
-  favorites = [],
-  onToggleFavorite
 }) {
   
   const menuMusicRef = useRef(null);
@@ -30,15 +28,6 @@ function ModalMenuMusic({
     if (!isMenuOpen) return;
     onClose && onClose();
   }, [isMenuOpen, onClose]);
-
-  // Check if genre/type is saved
-  const isSaved = (genre, type) => {
-   return favorites.some((fav) => fav.genre === genre && fav.type === type);
-  };
-
-  const handleStarClick = (item) => {
-   onToggleFavorite?.(item);
-  };
 
   // Close the menu when clicking outside of it
   useEffect(() => {

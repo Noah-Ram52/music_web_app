@@ -11,7 +11,6 @@ function ModalLoginSignup ({
   onClose, 
   isMenuOpen,
   userLoginHeader,
-  userLoginName,
   userLoginEmail,
   userLoginPassword,
   userLoginButton,
@@ -23,13 +22,12 @@ function ModalLoginSignup ({
   userSignupConfirmPassword,
   userSignupButton,
   userSignupSwitchLogin,
-  onSwitch,
-  onLogin,        // 🟢 NEW
-  email,          // 🟢 NEW
-  setEmail,       // 🟢 NEW
-  password,       // 🟢 NEW
-  setPassword,    // 🟢 NEW
-  loginError,     // 🟢 NEW
+  onSwitch,   
+  email,         
+  setEmail,       
+  password,       
+  setPassword,    
+  loginError,     
   name,
   setName,
   confirmPassword,

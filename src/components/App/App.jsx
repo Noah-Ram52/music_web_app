@@ -32,7 +32,7 @@ import ProfileInformation from "../ProfileInformation/ProfileInformation";
 import FavoritedUserSongs from "../FavoritedUserSongs/FavoritedUserSongs";
 
 // #Authentication
-import { authorize, checkToken, logout, signup} from "../../utils/auth"; // adjust path as needed
+import { authorize, checkToken, signup} from "../../utils/auth"; 
 
 
 function App() {
@@ -60,13 +60,14 @@ function App() {
   //   return stored ? JSON.parse(stored) : [];
   // });
 
-    const [favorites, setFavorites] = useState(() => {
-      const storedUser = localStorage.getItem("user");
-      const user = storedUser ? JSON.parse(storedUser) : null;
-      const key = user ? `favorites_${user.email}` : "favorites";
-      const stored = localStorage.getItem(key);
-      return stored ? JSON.parse(stored) : [];
-    });
+ const [favorites, setFavorites] = useState(() => {
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  if (!user) return [];
+  const key = `favorites_${user.email}`;
+  const stored = localStorage.getItem(key);
+  return stored ? JSON.parse(stored) : [];
+});
 
   const location = useLocation();
   const navigationType = useNavigationType();
@@ -95,6 +96,7 @@ function App() {
   const handleSignup = async (name, email, password) => {
     try {
       setLoginError("");
+      console.log("Signup Data:", response);
       const response = await signup(name, email, password);
       await handleLogin(email, password);
     
@@ -159,14 +161,6 @@ useEffect(() => {
       });
   }
 }, []);
-
-useEffect(() => {
-  if (user) {
-    const key = `favorites_${user.email}`;
-    const stored = localStorage.getItem(key);
-    setFavorites(stored ? JSON.parse(stored) : []);
-  }
-}, [user]);
 
 const handleLogout = () => {
   setIsLoggedIn(false);
