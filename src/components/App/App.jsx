@@ -42,7 +42,7 @@ function App() {
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("");
 
-  // ⭐ NEW: which auth view is active inside the modal
+  // ⭐ Which auth view is active inside the modal
   const [authView, setAuthView] = useState("login"); // "login" or "signup"
 
 
@@ -96,18 +96,16 @@ function App() {
   const handleSignup = async (name, email, password) => {
     try {
       setLoginError("");
-      console.log("Signup Data:", response);
       const response = await signup(name, email, password);
+      console.log("Signup Data:", response);
       await handleLogin(email, password);
-    
     } catch (error) {
       setLoginError(error.message);
       console.error("Signup failed:", error.message);
     }
   };
 
-// 🟢 NEW LOGIN HANDLER
-
+// 🟢 LOGIN HANDLER
 
 const handleLogin = async (email, password) => {
   try {
@@ -135,7 +133,7 @@ const handleLogin = async (email, password) => {
   }
 };
 
-// 🟢 NEW CHECK TOKEN ON START
+// 🟢 CHECK TOKEN ON START
 
 useEffect(() => {
   const token = localStorage.getItem("user_jwt");
@@ -258,16 +256,16 @@ const toggleFavorite = (item) => {
                           isMenuOpen={isMusicGenreOpen}
                           onClose={closeMusicMenu}
                           onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}      // 🟢 NEW
-                          loginError={loginError}    // 🟢 NEW
-                          isLoggedIn={isLoggedIn}    // 🟢 NEW
+                          onLogin={handleLogin}     
+                          loginError={loginError}    
+                          isLoggedIn={isLoggedIn}    
                         />
                       ) : (
                         <UserSignup
                           isMenuOpen={isMusicGenreOpen}
                           onClose={closeMusicMenu}
                           onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}    // 🟢 NEW
+                          onSignup={handleSignup}    
                         />
                       )
                     )}
