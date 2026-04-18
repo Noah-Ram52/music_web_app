@@ -29,7 +29,7 @@ import UserLogin from "../UserLogin/UserLogin";
 import UserSignup from "../UserSignup/UserSignup";
 import UserProfile from "../UserProfile/UserProfile";
 import ProfileInformation from "../ProfileInformation/ProfileInformation";
-import FavoritedUserSongs from "../FavoritedUserSongs/FavoritedUserSongs";
+
 
 // #Authentication
 import { authorize, checkToken, signup} from "../../utils/auth"; 
@@ -42,10 +42,8 @@ function App() {
   const [isMusicGenreOpen, setIsMusicGenreOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("");
 
-  // ⭐ Which auth view is active inside the modal
+  // Which auth view is active inside the modal
   const [authView, setAuthView] = useState("login"); // "login" or "signup"
-
-
 
   // Loading Route array default set to false.
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
