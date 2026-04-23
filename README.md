@@ -11,6 +11,11 @@ In the backend there is user implementation using different types of requests. T
 
 Using eslint to detect the errors within react and debugging other errors. This will help with the code running better and cleaner.
 
-## Music Web App Video
+## Running Locally
+
+To run the project you need to run the [back-end](https://github.com/Noah-Ram52/music_web_app_express) and [front-end](https://github.com/Noah-Ram52/music_web_app/tree/stage-1-frontend-and-api) on your computer locally to your computer. The reason for this is because there is a sign up and log in feature save songs.
+
+## Music Web App Video 
 
 Here in this [video](https://drive.google.com/file/d/1fkhWKKe7YPJOtMaK4cLDhzhiKQiox0mZ/view?usp=sharing) I will describe how the project works with the front-end and the back-end.
+
