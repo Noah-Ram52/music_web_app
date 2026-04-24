@@ -18,24 +18,14 @@ function NerdcoreMusicSongs({ favorites = [], onToggleFavorite, isLoggedIn }) {
       .finally(() => setLoading(false));
   }, []);
 
-  // useEffect(() => {
-  //   console.log('🔥 Fetching nerdcore videos...');
-  //   getNerdcoreVideos()
-  //     .then(videos => {
-  //       console.table(videos);  // ← Shows your exact data
-  //       setVideos(videos);
-  //     })
-  // }, []);
-
-    const fallbackVideos = [
-    "https://www.youtube.com/embed/elulJJxASXw?controls=1",
-    "https://www.youtube.com/embed/HK6N05s7bQU?controls=1",
-    "https://www.youtube.com/embed/7C4uuz2dBDA?controls=1",
-    "https://www.youtube.com/embed/TZTng1oClVY?controls=1",
-    "https://www.youtube.com/embed/21r5Of9ttqs?controls=1",
-    "https://www.youtube.com/embed/ITQN2YpV0SM?controls=1"
-   
-  ];
+  //   const fallbackVideos = [
+  //   "https://www.youtube.com/embed/elulJJxASXw?controls=1",
+  //   "https://www.youtube.com/embed/HK6N05s7bQU?controls=1",
+  //   "https://www.youtube.com/embed/7C4uuz2dBDA?controls=1",
+  //   "https://www.youtube.com/embed/TZTng1oClVY?controls=1",
+  //   "https://www.youtube.com/embed/21r5Of9ttqs?controls=1",
+  //   "https://www.youtube.com/embed/ITQN2YpV0SM?controls=1"
+  // ];
 
 if (loading) return 
 <div className="modal-music__loading">Loading Nerdcore Music...</div>;
@@ -44,12 +34,12 @@ if (loading) return
   return (
   <ModalMusic 
       nerdcoreSongTitle="Nerdcore Songs"
-      nerdcoreMusicVideoOne={fallbackVideos[0]}      
-      nerdcoreMusicVideoTwo={fallbackVideos[1]}
-      nerdcoreMusicVideoThree={fallbackVideos[2]}
-      nerdcoreMusicVideoFour={fallbackVideos[3]}
-      nerdcoreMusicVideoFive={fallbackVideos[4]}
-      nerdcoreMusicVideoSix={fallbackVideos[5]}
+      // nerdcoreMusicVideoOne={fallbackVideos[0]}      
+      // nerdcoreMusicVideoTwo={fallbackVideos[1]}
+      // nerdcoreMusicVideoThree={fallbackVideos[2]}
+      // nerdcoreMusicVideoFour={fallbackVideos[3]}
+      // nerdcoreMusicVideoFive={fallbackVideos[4]}
+      // nerdcoreMusicVideoSix={fallbackVideos[5]}
       videos={videos}
       favorites={favorites}
       onToggleFavorite={onToggleFavorite}  

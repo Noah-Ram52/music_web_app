@@ -3,26 +3,8 @@ import "./ModalMusic.css";
 
 function ModalMusic({
   classicalSongTitle,
-  classicalMusicVideoOne,
-  classicalMusicVideoTwo,
-  classicalMusicVideoThree,
-  classicalMusicVideoFour,
-  classicalMusicVideoFive,
-  classicalMusicVideoSix,
   jazzSongTitle,
-  jazzMusicVideoOne,
-  jazzMusicVideoTwo,
-  jazzMusicVideoThree,
-  jazzMusicVideoFour,
-  jazzMusicVideoFive,
-  jazzMusicVideoSix,
   nerdcoreSongTitle,
-  nerdcoreMusicVideoOne,
-  nerdcoreMusicVideoTwo,
-  nerdcoreMusicVideoThree,
-  nerdcoreMusicVideoFour,
-  nerdcoreMusicVideoFive,
-  nerdcoreMusicVideoSix,
   videos = [],  // YouTube metadata array
   favorites = [], // Array of favorite items
   onToggleFavorite, // Function to toggle favorites
@@ -30,16 +12,7 @@ function ModalMusic({
 }) 
 
 {
-  const title = classicalSongTitle || jazzSongTitle || nerdcoreSongTitle;
-  
-  const videoSources = [
-    classicalMusicVideoOne || jazzMusicVideoOne || nerdcoreMusicVideoOne,
-    classicalMusicVideoTwo || jazzMusicVideoTwo || nerdcoreMusicVideoTwo,
-    classicalMusicVideoThree || jazzMusicVideoThree || nerdcoreMusicVideoThree,
-    classicalMusicVideoFour || jazzMusicVideoFour || nerdcoreMusicVideoFour,
-    classicalMusicVideoFive || jazzMusicVideoFive || nerdcoreMusicVideoFive,
-    classicalMusicVideoSix || jazzMusicVideoSix || nerdcoreMusicVideoSix
-  ];
+const title = classicalSongTitle || jazzSongTitle || nerdcoreSongTitle;
 
 const isVideoSaved = (index) => {
   return favorites.some(
@@ -50,8 +23,6 @@ const isVideoSaved = (index) => {
   );
 };
 
-
-
 // Toggle favorite for specific video
   const toggleVideoFavorite = (index) => {
     onToggleFavorite({
@@ -61,7 +32,7 @@ const isVideoSaved = (index) => {
       title: videos[index]?.title,
       channel: videos[index]?.channel,
       thumbnail: videos[index]?.thumbnail,
-      embedUrl: videoSources[index] || ""
+      embedUrl: videos[index]?.embedUrl || ""
     });
   };
 
@@ -82,7 +53,7 @@ const isVideoSaved = (index) => {
             </div>
           )}
           <iframe
-            src={videoSources[0]}
+            src={videos[0]?.embedUrl}
             className="modal-music_video_container_size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
@@ -113,7 +84,8 @@ const isVideoSaved = (index) => {
             </div>
           )}
           <iframe
-            src={videoSources[1]}
+            // src={videoSources[1]}
+            src={videos[1]?.embedUrl}
             className="modal-music_video_container_size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
@@ -143,7 +115,7 @@ const isVideoSaved = (index) => {
             </div>
           )}
           <iframe
-            src={videoSources[2]}
+            src={videos[2]?.embedUrl}
             className="modal-music_video_container_size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
@@ -173,7 +145,7 @@ const isVideoSaved = (index) => {
             </div>
           )}
           <iframe
-            src={videoSources[3]}
+            src={videos[3]?.embedUrl}
             className="modal-music_video_container_size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
@@ -203,7 +175,7 @@ const isVideoSaved = (index) => {
             </div>
           )}
           <iframe
-            src={videoSources[4]}
+            src={videos[4]?.embedUrl}
             className="modal-music_video_container_size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
@@ -233,7 +205,8 @@ const isVideoSaved = (index) => {
             </div>
           )}
           <iframe
-            src={videoSources[5]}
+            // src={videoSources[5]}
+            src={videos[5]?.embedUrl}
             className="modal-music_video_container_size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"

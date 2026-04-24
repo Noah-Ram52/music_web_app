@@ -46,17 +46,13 @@ function App() {
   const [authView, setAuthView] = useState("login"); // "login" or "signup"
 
   // Loading Route array default set to false.
+  // const [isLoadingRoute, setIsLoadingRoute] = useState(false);
   const [isLoadingRoute, setIsLoadingRoute] = useState(false);
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
-  // const [favorites, setFavorites] = useState(() => {
-  //   const stored = localStorage.getItem("favorites");
-  //   return stored ? JSON.parse(stored) : [];
-  // });
 
  const [favorites, setFavorites] = useState(() => {
   const storedUser = localStorage.getItem("user");
@@ -73,6 +69,7 @@ function App() {
   // Whenever button is clicked it will load that button
    useEffect(() => {
     if (navigationType !== "POP") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoadingRoute(true);
       const timer = setTimeout(() => {
         setIsLoadingRoute(false);
@@ -83,13 +80,12 @@ function App() {
 
   // Page refresh detection
   useEffect(() => {
-    // Show loading on EVERY page load/refresh
-    setIsLoadingRoute(true);
-    const timer = setTimeout(() => {
-      setIsLoadingRoute(false);
-    }, 2000); // 2 seconds
-    return () => clearTimeout(timer);
-  }, []); // Empty array = runs ONCE per page load
+  const timer = setTimeout(() => {
+    setIsLoadingRoute(false);
+  }, 2000);
+
+  return () => clearTimeout(timer);
+}, []);
 
   const handleSignup = async (name, email, password) => {
     try {
@@ -103,7 +99,7 @@ function App() {
     }
   };
 
-// 🟢 LOGIN HANDLER
+// LOGIN HANDLER
 
 const handleLogin = async (email, password) => {
   try {
@@ -113,11 +109,11 @@ const handleLogin = async (email, password) => {
     
     console.log("FULL LOGIN RESPONSE:", response);
 
-    // 🟢 Capitalize first letter of username from email
+    // Capitalizes first letter of username from email
     const username = email.split('@')[0];  // "john" from "john@example.com"
     const capitalizedName = username.charAt(0).toUpperCase() + username.slice(1);
 
-    // 🟢 SIMPLE: Use email as display name
+    //  Use email as display name
     const displayUser = { name: capitalizedName, email };
     localStorage.setItem("user", JSON.stringify(displayUser));
     
@@ -131,7 +127,7 @@ const handleLogin = async (email, password) => {
   }
 };
 
-// 🟢 CHECK TOKEN ON START
+// CHECK TOKEN ON START
 
 useEffect(() => {
   const token = localStorage.getItem("user_jwt");
