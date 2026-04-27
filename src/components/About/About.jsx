@@ -6,8 +6,8 @@ import "./About.css";
 
 function About() {
   return (
-    <section>
-      <div className="about">
+    <section className="about">
+      <div >
         <p className="about__info">
           All of the genres have developed over time. Make sure to support all
           the genres of music. If you need to contact me, you can email me at

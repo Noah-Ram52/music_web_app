@@ -210,6 +210,29 @@ const toggleFavorite = (item) => {
 
   return (
     <>
+    {isMusicGenreOpen && (
+      <div className={`modal-wrapper ${menuTitle === "Music Songs" ? "pos-songs" : menuTitle === "Music Artist" ? "pos-artist" : "pos-auth"}`}>
+          {menuTitle === "Music Songs" && (
+            <MusicGenreSongsList isMenuOpen={isMusicGenreOpen} onClose={closeMusicMenu} title={menuTitle} />
+          )}
+          {menuTitle === "Music Artist" && (
+            <MenuMusicArtist isMenuOpen={isMusicGenreOpen} onClose={closeMusicMenu} title={menuTitle} />
+          )}
+          {menuTitle === "Login or Sign Up" && (
+            authView === "login" ? <UserLogin isMenuOpen={isMusicGenreOpen}
+            onClose={closeMusicMenu}
+            onSwitchToSignup={() => setAuthView("signup")}
+            onLogin={handleLogin}     
+            loginError={loginError}    
+            isLoggedIn={isLoggedIn} /> : <UserSignup isMenuOpen={isMusicGenreOpen}
+            onClose={closeMusicMenu}
+            onSwitchToLogin={() => setAuthView("login")}
+            onSignup={handleSignup} />
+          )}
+     </div>
+   )}
+
+
       <div className="page">
         <div className="page__content">
        {isLoadingRoute && (
@@ -226,43 +249,8 @@ const toggleFavorite = (item) => {
                     <Header 
                       onMusicToggle={openMusicMenu}
                       isLoggedIn={isLoggedIn}
-                      user={user}
-                                     
+                      user={user}          
                     />
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                   {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}     
-                          loginError={loginError}    
-                          isLoggedIn={isLoggedIn}    
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}    
-                        />
-                      )
-                    )}
                     <Main />
                     <About />
                   </>
@@ -276,25 +264,8 @@ const toggleFavorite = (item) => {
                     <Header 
                     onMusicToggle={openMusicMenu} 
                     isLoggedIn={isLoggedIn}
-                    user={user}
-                    
+                    user={user}    
                     />
-                    
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-
                     <UserProfile 
                     user={user}
                     onLogout={handleLogout}
@@ -302,15 +273,15 @@ const toggleFavorite = (item) => {
                     favorites={favorites}
                     />
                     {isProfileOpen && (
-                  <div className="page__overlay" onClick={closeProfile}>
-                 <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
-                  <ProfileInformation 
-                  user={user} 
-                  favorites={favorites} 
-                  onClose={closeProfile} />
-                   </div>
-                   </div>
-                  )}
+                      <div className="page__overlay" onClick={closeProfile}>
+                        <div className="profile-modal" onClick={(e) => e.stopPropagation()}>
+                          <ProfileInformation 
+                            user={user} 
+                            favorites={favorites} 
+                            onClose={closeProfile} />
+                        </div>
+                      </div>
+                    )}
                </>
               </ProtectedRoute>
               }  
@@ -319,56 +290,18 @@ const toggleFavorite = (item) => {
               path="/classical-music-songs" 
               element={ 
               <>
-              
-                    <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}
-                    onLogout={handleLogout}
-                    />
-                    
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                   {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      // ⭐ CHANGED: choose between login / signup based on authView
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches to signup
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}         
-                          loginError={loginError}        
-                          isLoggedIn={isLoggedIn}       
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches back to login
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}
-                        />
-                      )
-                    )}
-                        <ClassicalMusicSongs 
-                          favorites={favorites}
-                          onToggleFavorite={toggleFavorite}
-                          isLoggedIn={isLoggedIn}
-                        />
-               </>
+                <Header 
+                  onMusicToggle={openMusicMenu} 
+                  isLoggedIn={isLoggedIn}
+                  user={user}
+                  onLogout={handleLogout}
+                />
+                <ClassicalMusicSongs 
+                  favorites={favorites}
+                  onToggleFavorite={toggleFavorite}
+                  isLoggedIn={isLoggedIn}
+                />
+              </>
               }>
              </Route>
              <Route path="/classical-music-artist" element={ <>
@@ -378,89 +311,17 @@ const toggleFavorite = (item) => {
                     user={user}
                     onLogout={handleLogout}
                     />
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                   {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      // ⭐ CHANGED: choose between login / signup based on authView
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches to signup
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}         
-                          loginError={loginError}        
-                          isLoggedIn={isLoggedIn}   
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches back to login
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}
-                        />
-                      )
-                    )}
                     <ClassicalMusicArtist />
                </>} />
              <Route path="/jazz-music-songs" element={  
               <>
-                    <Header 
+                  <Header 
                     onMusicToggle={openMusicMenu} 
                     isLoggedIn={isLoggedIn}
                     user={user}
                     onLogout={handleLogout}
-                    />
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                  {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      // ⭐ CHANGED: choose between login / signup based on authView
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches to signup
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}         
-                          loginError={loginError}        
-                          isLoggedIn={isLoggedIn}       
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches back to login
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}
-                        />
-                      )
-                    )}
-                 <JazzMusicSongs 
+                  />
+                  <JazzMusicSongs 
                     favorites={favorites}
                     onToggleFavorite={toggleFavorite}
                     isLoggedIn={isLoggedIn}
@@ -475,42 +336,6 @@ const toggleFavorite = (item) => {
                     user={user}
                     onLogout={handleLogout}
                     />
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )} 
-                   {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      // ⭐ CHANGED: choose between login / signup based on authView
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches to signup
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}         
-                          loginError={loginError}        
-                          isLoggedIn={isLoggedIn}       
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches back to login
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}
-                        />
-                      )
-                    )}
                     <JazzMusicArtist /> 
                   </>
                 } 
@@ -523,42 +348,6 @@ const toggleFavorite = (item) => {
                     user={user}
                     onLogout={handleLogout}
                     />
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}  
-                   {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      // ⭐ CHANGED: choose between login / signup based on authView
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches to signup
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}         
-                          loginError={loginError}        
-                          isLoggedIn={isLoggedIn}       
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches back to login
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}
-                        />
-                      )
-                    )}
                     <NerdcoreMusicSongs 
                     favorites={favorites}
                     onToggleFavorite={toggleFavorite}
@@ -574,42 +363,6 @@ const toggleFavorite = (item) => {
                     user={user}
                     onLogout={handleLogout}
                     />
-                    {isMusicGenreOpen && menuTitle === "Music Songs" && (
-                      <MusicGenreSongsList
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}
-                    {isMusicGenreOpen && menuTitle === "Music Artist" && (
-                      <MenuMusicArtist
-                        isMenuOpen={isMusicGenreOpen}
-                        onClose={closeMusicMenu}
-                        title={menuTitle}
-                      />
-                    )}  
-                   {isMusicGenreOpen && menuTitle === "Login or Sign Up" && (
-                      // ⭐ CHANGED: choose between login / signup based on authView
-                      authView === "login" ? (
-                        <UserLogin
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches to signup
-                          onSwitchToSignup={() => setAuthView("signup")}
-                          onLogin={handleLogin}         
-                          loginError={loginError}        
-                          isLoggedIn={isLoggedIn}       
-                        />
-                      ) : (
-                        <UserSignup
-                          isMenuOpen={isMusicGenreOpen}
-                          onClose={closeMusicMenu}
-                          // ⭐ pass callback that switches back to login
-                          onSwitchToLogin={() => setAuthView("login")}
-                          onSignup={handleSignup}
-                        />
-                      )
-                    )}
                     <NerdcoreMusicArtist /> 
                     </>
                   } 

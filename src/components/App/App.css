@@ -58,3 +58,29 @@
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
+
+/* ✅ ADDED: Positioning logic */
+/* In App.css */
+
+/* 1. Shared styling for ALL modals - this keeps them at the same height */
+.modal-wrapper {
+  position: absolute;
+  top: 125px; /* <--- ALL modals will now be at this exact height */
+  z-index: 1000;
+}
+
+/* 2. Positioning classes ONLY control horizontal spacing */
+.pos-songs {
+  left: 90px; /* Change this to align under "Music" button */
+  width: 360px;
+}
+
+.pos-artist {
+  top: 123px; 
+  left: 200px; 
+  width: 360px;
+}
+
+.pos-auth {
+  right: 50px; /* Or use left, but keep the 'top' value consistent */
+}
