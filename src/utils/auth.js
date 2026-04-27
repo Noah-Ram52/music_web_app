@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://musicwebsapp.netlify.app/api';
 
  function checkResponse(res) {
    if (res.ok) {

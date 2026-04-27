@@ -233,8 +233,6 @@ const toggleFavorite = (item) => {
           )}
      </div>
    )}
-
-
       <div className="page">
         <div className="page__content">
        {isLoadingRoute && (
@@ -330,8 +328,7 @@ const toggleFavorite = (item) => {
                     <NerdcoreMusicArtist /> 
                     </>
                   } 
-                  />
-                 
+                  /> 
             </Routes>
           </div>
           <Footer />
