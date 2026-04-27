@@ -210,6 +210,8 @@ const toggleFavorite = (item) => {
 
   return (
     <>
+      
+
     {isMusicGenreOpen && (
       <div className={`modal-wrapper ${menuTitle === "Music Songs" ? "pos-songs" : menuTitle === "Music Artist" ? "pos-artist" : "pos-auth"}`}>
           {menuTitle === "Music Songs" && (
@@ -241,31 +243,29 @@ const toggleFavorite = (item) => {
             </div>
           )}
           <div className="page__main">
+            <Header 
+              onMusicToggle={openMusicMenu} 
+              isLoggedIn={isLoggedIn}
+              user={user}
+              onLogout={handleLogout}
+            />
             <Routes>
               <Route
                 path="/"
                 element={
-                  <>
-                    <Header 
-                      onMusicToggle={openMusicMenu}
-                      isLoggedIn={isLoggedIn}
-                      user={user}          
-                    />
+                  <> 
                     <Main />
                     <About />
                   </>
                 }
               />
+
+              
               <Route 
                 path="/profile"
                 element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <>
-                    <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}    
-                    />
                     <UserProfile 
                     user={user}
                     onLogout={handleLogout}
@@ -290,12 +290,6 @@ const toggleFavorite = (item) => {
               path="/classical-music-songs" 
               element={ 
               <>
-                <Header 
-                  onMusicToggle={openMusicMenu} 
-                  isLoggedIn={isLoggedIn}
-                  user={user}
-                  onLogout={handleLogout}
-                />
                 <ClassicalMusicSongs 
                   favorites={favorites}
                   onToggleFavorite={toggleFavorite}
@@ -305,22 +299,10 @@ const toggleFavorite = (item) => {
               }>
              </Route>
              <Route path="/classical-music-artist" element={ <>
-                    <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}
-                    onLogout={handleLogout}
-                    />
                     <ClassicalMusicArtist />
                </>} />
              <Route path="/jazz-music-songs" element={  
               <>
-                  <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}
-                    onLogout={handleLogout}
-                  />
                   <JazzMusicSongs 
                     favorites={favorites}
                     onToggleFavorite={toggleFavorite}
@@ -330,24 +312,12 @@ const toggleFavorite = (item) => {
             } />
              <Route path="/jazz-music-artist" element={ 
                <>
-                <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}
-                    onLogout={handleLogout}
-                    />
                     <JazzMusicArtist /> 
                   </>
                 } 
                 />
              <Route path="/nerdcore-music-songs" element={
                <> 
-                <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}
-                    onLogout={handleLogout}
-                    />
                     <NerdcoreMusicSongs 
                     favorites={favorites}
                     onToggleFavorite={toggleFavorite}
@@ -357,12 +327,6 @@ const toggleFavorite = (item) => {
                />
              <Route path="/nerdcore-music-artist" element={ 
               <>
-                <Header 
-                    onMusicToggle={openMusicMenu} 
-                    isLoggedIn={isLoggedIn}
-                    user={user}
-                    onLogout={handleLogout}
-                    />
                     <NerdcoreMusicArtist /> 
                     </>
                   } 
