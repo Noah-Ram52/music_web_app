@@ -1,4 +1,4 @@
-const API_URL = 'https://musicwebsapp.netlify.app/api';
+const API_URL = 'musicwebappexpress-production.up.railway.app/api';
 
  function checkResponse(res) {
    if (res.ok) {
