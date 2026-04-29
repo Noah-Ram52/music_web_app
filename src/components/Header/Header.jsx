@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 function Header({ onMusicToggle, isLoggedIn, user}) {
 
   return (
-    <header>
-      <div className="header">
+    <header className="header">
         <nav className="header__inner">
           <div className="header__main_displays">
             <button className="header__buttons" type="button">
@@ -49,7 +48,6 @@ function Header({ onMusicToggle, isLoggedIn, user}) {
             )}
           </div>
         </nav>
-      </div>
     </header>
   );
 }

@@ -29,3 +29,17 @@
     font-weight: 400;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding-top: 50px; 
+    max-width: 100%;   
+    justify-content: center; 
+    text-align: center;    
+  }
+
+  .about__info {
+    width: 71%; 
+    margin: 0 auto;
+  }
+}

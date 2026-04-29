@@ -7,13 +7,13 @@ function FavoritedUserSongs({ favorites = [] }) {
     if (!list || !list.length) return null; // do not show per-genre empty messages
 
     return list.map((item, i) => (
-      <div key={i} className="favorite-video-card">
-        <div className="video-media">
+      <div key={i} className="favorite-card">
+        <div className="favorite-card__media">
           {item.embedUrl ? (
             <iframe
               src={item.embedUrl}
               title={item.title || "video"}
-              className="favorite-video-iframe"
+              className="favorite-card__iframe"
               allow="autoplay; encrypted-media"
               allowFullScreen
             />
@@ -21,11 +21,11 @@ function FavoritedUserSongs({ favorites = [] }) {
             <img
               src={item.thumbnail}
               alt={item.title || 'favorite thumbnail'}
-              className="favorite-video-thumbnail"
+              className="favorite-card__thumbnail"
             />
           ) : null}
         </div>
-        {item.title && <p className="favorite-video-title">{item.title}</p>}
+        {item.title && <p className="favorite-card__title">{item.title}</p>}
       </div>
     ));
   };

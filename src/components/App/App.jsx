@@ -257,8 +257,6 @@ const toggleFavorite = (item) => {
                   </>
                 }
               />
-
-              
               <Route 
                 path="/profile"
                 element={

@@ -28,12 +28,11 @@ function UserProfile ({
                             Profile Information                  
                         </button>
                         </div>
-                    <div 
-                    onClick={onLogout}>
-                     <Link to="/" className="user-profile__logout-home">
-                      Log Out
-                     </Link>
-               </div>
+                    <div onClick={onLogout}>
+                        <Link to="/" className="user-profile__logout-home">
+                            Log Out
+                        </Link>
+                    </div>
             </div>
             <div className="user-profile__main_user_profile">
                 <FavoritedUserSongs favorites={favs} />

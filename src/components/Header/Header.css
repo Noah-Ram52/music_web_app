@@ -92,3 +92,39 @@
     background-color: #08a2bd;
   }
 }
+
+
+/* place at the end of Header.css */
+@media screen and (max-width: 768px) {
+  .header {
+    height: auto;
+    padding: 8px 12px;
+  }
+
+  .header__inner {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .header__main_displays {
+    display: flex;
+    gap: 12px;
+    padding: 8px 16px;
+    border-width: 2px;
+    justify-content: space-around;
+  }
+
+  .header__login-bar {
+    justify-content: center;
+    padding: 8px 16px;
+  }
+
+  .header__buttons {
+    font-size: 20px;
+  }
+
+  .header__login {
+    font-size: 20px;
+  }
+}

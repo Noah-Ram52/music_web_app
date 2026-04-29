@@ -1,12 +1,26 @@
-.footer {
+.footer__text {
   max-width: 552px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 0 40px; /* push footer content down and add spacing from bottom */
+  padding: 24px 0 40px; 
 }
 
 .footer__developer_text {
   font-family: "Montserrat", sans-serif;
   margin-right: auto;
+}
+
+
+@media screen and (max-width: 768px) {
+  .footer__text {
+    padding: 16px 0; /* Reduce vertical padding on mobile */
+    max-width: 100%;
+  }
+
+  .footer__developer_text {
+    font-size: 14px; /* Reduce font size on mobile */
+    text-align: center;
+    margin: 0 auto;
+  }
 }
