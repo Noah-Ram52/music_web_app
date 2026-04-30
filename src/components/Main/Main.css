@@ -39,13 +39,13 @@
   }
 
   .main__music_notation {
-    order: 3; /* Now it appears below the drum image */
+    order: 3; 
     max-width: 100%;
     width: 580px;
   }
 
   .main__info_text {
-    order: 2; /* Now it appears below both images */
+    order: 2; 
     max-width: 100%;
   }
 }
