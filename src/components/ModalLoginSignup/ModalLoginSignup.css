@@ -136,4 +136,11 @@
     margin-right: 0;
     height: 48px;
   }
+
+  .modal-login-signup__close {
+    height: 22px;
+    position: relative;
+    bottom: 20px;
+    width: 26px;
+  }
 }
