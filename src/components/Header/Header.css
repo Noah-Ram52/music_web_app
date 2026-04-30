@@ -98,7 +98,8 @@
 @media screen and (max-width: 768px) {
   .header {
     height: auto;
-    padding: 8px 12px;
+    /* padding: 8px 12px; */
+    padding: 12px 1px;
   }
 
   .header__inner {
