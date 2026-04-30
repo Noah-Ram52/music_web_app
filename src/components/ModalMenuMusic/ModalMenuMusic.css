@@ -58,3 +58,9 @@
   font-weight: 700;
   padding: 10px 0;
 }
+
+@media screen and (max-width: 768px) {
+  .menu-music-genre__panel {
+    right: 91px;
+  }
+}
