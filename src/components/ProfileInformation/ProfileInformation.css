@@ -1,0 +1,18 @@
+.profile-information {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.profile-information__title {
+  position: relative;
+  bottom: 23px;
+}
+
+.profile-information__close-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  align-self: flex-end;
+  position: absolute;
+}

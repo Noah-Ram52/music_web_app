@@ -1,0 +1,85 @@
+.modal-login-signup {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.modal-login-signup__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-login-signup__modal-inner {
+  width: 480px;
+  max-width: 90vw;
+  min-height: 300px;
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  color: #333;
+}
+
+.modal-login-signup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-login-signup__title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  margin-bottom: 50px;
+}
+
+.modal-login-signup__close {
+  margin-left: auto;
+  width: 30px;
+  cursor: pointer;
+  bottom: 20px;
+  position: relative;
+}
+
+.modal-login-signup__email_password {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+.modal-login-signup__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-login-signup__login_password_button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  width: 180px;
+  height: 60px;
+  margin-top: 0px;
+  margin-right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-login-signup__error {
+  font-family: "Roboto", sans-serif;
+  color: #ff4d4f;
+  text-align: center;
+  margin: 8px 0 0;
+  font-size: 14px;
+}

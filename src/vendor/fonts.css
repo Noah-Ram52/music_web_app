@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Ultra";
+  src: url("../assets/fonts/Ultra-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/Montserrat-Italic-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/RobotoCondensed-VariableFont_wght.ttf")
+    format("truetype");
+}

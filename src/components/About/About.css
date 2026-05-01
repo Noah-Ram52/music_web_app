@@ -1,0 +1,45 @@
+.about {
+  padding-top: 250px;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 40%;
+}
+
+.about__info {
+  font-family: "Roboto", sans-serif;
+}
+
+.about__contact-info {
+  text-decoration: none;
+  color: black;
+}
+
+.about__contact-info:hover {
+  animation: boldContactInfo ease infinite 2s;
+}
+
+@keyframes boldContactInfo {
+  0% {
+    font-weight: 400;
+  }
+  50% {
+    font-weight: 700;
+  }
+  100% {
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding-top: 50px; 
+    max-width: 100%;   
+    justify-content: center; 
+    text-align: center;    
+  }
+
+  .about__info {
+    width: 71%; 
+    margin: 0 auto;
+  }
+}
