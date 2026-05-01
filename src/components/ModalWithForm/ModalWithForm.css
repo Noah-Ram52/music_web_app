@@ -21,7 +21,7 @@
   height: 100%;
 }
 
-.modal-login-signup__modal_size {
+.modal-login-signup__modal-inner {
   width: 480px;
   max-width: 90vw;
   min-height: 300px;

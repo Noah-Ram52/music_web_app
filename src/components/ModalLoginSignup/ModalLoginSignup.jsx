@@ -6,9 +6,6 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 // #CSS
 import "./ModalLoginSignup.css";
 
-// #Images
-import CloseModal from "../../assets/images/close.png";
-
 function ModalLoginSignup({
   onClose,
   isMenuOpen,
@@ -35,6 +32,7 @@ function ModalLoginSignup({
   confirmPassword,
   setConfirmPassword,
   signupError,
+  onSubmit,
 }) {
   const handleClose = useCallback(() => {
     console.log("Login/Sign up Modal Closes");
@@ -58,6 +56,7 @@ function ModalLoginSignup({
       switchText={switchText}
       onSwitch={onSwitch}
       error={error}
+      onSubmit={onSubmit}
     >
       {/* Signup only: name field */}
       {isSignup && (

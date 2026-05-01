@@ -1,5 +1,7 @@
-// components/ModalWithForm/ModalWithForm.jsx
+// #React
 import { useRef, useEffect } from "react";
+
+// #Images
 import CloseModal from "../../assets/images/close.png";
 
 function ModalWithForm({
@@ -12,6 +14,7 @@ function ModalWithForm({
   isLoading = false,
   children,
   error,
+  onSubmit,
 }) {
   const modalRef = useRef(null);
 
@@ -41,7 +44,8 @@ function ModalWithForm({
   return (
     <div className="modal-login-signup">
       <div className="modal-login-signup__modal" ref={modalRef}>
-        <div className="modal-login-signup__modal_size">
+        <div className="modal-login-signup__modal-inner">
+          <form onSubmit={onSubmit}>
           <div className="modal-login-signup__header">
             <div className="modal-login-signup__title">{title}</div>
             <img
@@ -70,6 +74,7 @@ function ModalWithForm({
               </button>
             )}
           </div>
+          </form>
         </div>
       </div>
     </div>

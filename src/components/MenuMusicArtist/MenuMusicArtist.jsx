@@ -16,6 +16,7 @@ function MenuMusicArtist({ isMenuOpen, onClose, title }) {
       isMenuOpen={isMenuOpen} 
       onClose={onClose} 
       title={title} 
+      className="menu-music-genre--artist"
       songsClassicalArtist={songsClassicalArtist} 
       songsJazzArtist={songsJazzArtist} 
       songsNerdcoreArtist={songsNerdcoreArtist} />

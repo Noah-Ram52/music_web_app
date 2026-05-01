@@ -13,7 +13,7 @@
   color: transparent;
 }
 
-.favorite-user-songs__containers {
+.favorited-user-songs__containers {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -59,8 +59,7 @@
 
 
 @media screen and (max-width: 768px) {
-  /* Container setup for horizontal scrolling */
-  .favorite-user-songs__containers {
+  .favorited-user-songs__containers {
     display: flex;
     flex-direction: column;      
     flex-wrap: nowrap;        
@@ -70,7 +69,6 @@
     width: 100%;
   }
 
-  /* Force cards to 658px width, but cap at 95% of the screen */
   .favorite-video {
     /* Sets width to 658px, or 95% of screen if smaller */
     flex: 0 0 min(658px, 95vw);  

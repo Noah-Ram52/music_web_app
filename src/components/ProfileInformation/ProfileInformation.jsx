@@ -8,7 +8,7 @@ function ProfileInformation ({ user, onClose }) {
         <div className="profile-information">
             <h2 className="profile-information__title">User Information</h2>
             <img 
-                className="profile-information__close_button" 
+                className="profile-information__close-button" 
                 src={CloseProfile} 
                 alt="close button" 
                 onClick={onClose} 

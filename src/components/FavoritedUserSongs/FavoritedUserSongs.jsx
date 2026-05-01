@@ -43,14 +43,14 @@ function FavoritedUserSongs({ favorites = [] }) {
     <div className="favorited-user-songs">
       <h1>Favorited Songs</h1>
       <h2>Classical Songs</h2>
-      <div className="favorite-user-songs__containers">{renderVideos(favorites.filter((f) => f.genre === "Classical Songs"))}
+      <div className="favorited-user-songs__containers">{renderVideos(favorites.filter((f) => f.genre === "Classical Songs"))}
       </div>
       <h2>Jazz Songs</h2>
-      <div className="favorite-user-songs__containers">
+      <div className="favorited-user-songs__containers">
       {renderVideos(favorites.filter((f) => f.genre === "Jazz Songs"))}
       </div>
       <h2>Nerdcore Songs</h2>
-      <div className="favorite-user-songs__containers">
+      <div className="favorited-user-songs__containers">
       {renderVideos(favorites.filter((f) => f.genre === "Nerdcore Songs"))}
       </div>
     </div>

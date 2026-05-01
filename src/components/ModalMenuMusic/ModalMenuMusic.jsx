@@ -62,9 +62,11 @@ function ModalMenuMusic({
 
   return (
     <div
-      className={`menu-music-genre ${isMenuOpen ? "menu-music-genre--open" : ""} ${className || ""}`}
+      className={`menu-music-genre ${isMenuOpen ? "menu-music-genre--open" : ""} 
+      ${className || ""}`}
     >
-      <div className="menu-music-genre__panel" ref={menuMusicRef}>
+      <div className={`menu-music-genre__panel 
+        ${className || ""}`} ref={menuMusicRef}>
         <h2 className="menu-music-genre__title">{title}</h2>
         <ul className="menu-music-genre__list">
           {/* Classical */}
@@ -73,7 +75,7 @@ function ModalMenuMusic({
             {showSongs && (
               <Link 
                 to="/classical-music-songs"
-                className="menu-music-genre__button_items"
+                className="menu-music-genre__button-items"
                 onClick={handleClose}
               >
                 {songsClassicalGenre || "Classical"}
@@ -82,7 +84,7 @@ function ModalMenuMusic({
             {showArtists && (
               <Link 
                 to="/classical-music-artist"
-                className="menu-music-genre__button_items"
+                className="menu-music-genre__button-items"
                 onClick={handleClose}
               >
                 {songsClassicalArtist || "Classical Artist"}
@@ -97,7 +99,7 @@ function ModalMenuMusic({
             {showSongs && (
               <Link 
                 to="/jazz-music-songs"
-                className="menu-music-genre__button_items"
+                className="menu-music-genre__button-items"
                 onClick={handleClose}
               >
                 {songsJazzGenre || "Jazz"}
@@ -106,7 +108,7 @@ function ModalMenuMusic({
             {showArtists && (
               <Link 
                 to="/jazz-music-artist"
-                className="menu-music-genre__button_items"
+                className="menu-music-genre__button-items"
                 onClick={handleClose}
               >
                 {songsJazzArtist || "Jazz Artist"}
@@ -119,7 +121,7 @@ function ModalMenuMusic({
             {showSongs && (
               <Link 
                 to="/nerdcore-music-songs"
-                className="menu-music-genre__button_items"
+                className="menu-music-genre__button-items"
                 onClick={handleClose}
               >
                 {songsNerdcoreGenre || "Nerdcore"}
@@ -128,7 +130,7 @@ function ModalMenuMusic({
             {showArtists && (
               <Link 
                 to="/nerdcore-music-artist"
-                className="menu-music-genre__button_items"
+                className="menu-music-genre__button-items"
                 onClick={handleClose}
               >
                 {songsNerdcoreArtist || "Nerdcore Artist"}

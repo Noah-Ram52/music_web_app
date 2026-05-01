@@ -11,13 +11,13 @@ function ModalArtists ({
       {artists.map((artist, index) => (
         <div key={index} className="modal-artists__holder">
           <img 
-            className="modal-artists__images" 
+            className="modal-artists__image" 
             src={artist.image} 
             alt={artist.name} 
           />
-          <div className="modal-artists__holder_position">
-            <p className="modal-artists__holder_names">{artist.name}</p>
-            <p className="modal-artists__holder_information">{artist.info}</p>
+          <div className="modal-artists__holder-position">
+            <p className="modal-artists__holder-names">{artist.name}</p>
+            <p className="modal-artists__holder-information">{artist.info}</p>
           </div>
         </div>
       ))}

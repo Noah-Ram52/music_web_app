@@ -54,7 +54,7 @@ const isVideoSaved = (index) => {
           )}
           <iframe
             src={videos[0]?.embedUrl}
-            className="modal-music_video_container_size"
+            className="modal-music__video-container-size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
             allowFullScreen
@@ -86,7 +86,7 @@ const isVideoSaved = (index) => {
           <iframe
             // src={videoSources[1]}
             src={videos[1]?.embedUrl}
-            className="modal-music_video_container_size"
+            className="modal-music__video-container-size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
             allowFullScreen
@@ -116,7 +116,7 @@ const isVideoSaved = (index) => {
           )}
           <iframe
             src={videos[2]?.embedUrl}
-            className="modal-music_video_container_size"
+            className="modal-music__video-container-size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
             allowFullScreen
@@ -146,7 +146,7 @@ const isVideoSaved = (index) => {
           )}
           <iframe
             src={videos[3]?.embedUrl}
-            className="modal-music_video_container_size"
+            className="modal-music__video-container-size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
             allowFullScreen
@@ -176,7 +176,7 @@ const isVideoSaved = (index) => {
           )}
           <iframe
             src={videos[4]?.embedUrl}
-            className="modal-music_video_container_size"
+            className="modal-music__video-container-size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
             allowFullScreen
@@ -207,7 +207,7 @@ const isVideoSaved = (index) => {
           <iframe
             // src={videoSources[5]}
             src={videos[5]?.embedUrl}
-            className="modal-music_video_container_size"
+            className="modal-music__video-container-size"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
             gyroscope; picture-in-picture"
             allowFullScreen

@@ -1,18 +1,8 @@
-/* .page {
-  background-image: linear-gradient(to bottom right, #ffc508, #61d8ed);
-  min-height: 100vh;
-  padding-top: 10px;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-} */
-
 .page {
   background-image: linear-gradient(to bottom right, #ffc508, #61d8ed);
   min-height: 100vh;
-  height: auto; /* ALLOWS THE PAGE TO GROW AS YOU ADD CONTENT */
-  background-attachment: scroll; /* ENSURES BACKGROUND SCROLLS WITH PAGE */
+  height: auto;
+  background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -22,12 +12,11 @@
 .page__content {
   display: flex;
   flex-direction: column;
-  margin: 0px 100px;
+  margin: 0 100px;
 }
 
 .page__main {
   flex: 1;
-  
 }
 
 .page__preloader-overlay {
@@ -74,47 +63,36 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* Positing Menu Modals */
 .modal-wrapper {
   position: absolute;
-  top: 125px; 
+  top: 125px;
+  left: 0;
+  right: 0;
   z-index: 1000;
 }
 
-
-.pos-songs {
-  left: 90px; 
-  width: 360px;
-}
-
-.pos-artist {
-  top: 123px; 
-  left: 200px; 
-  width: 360px;
-}
-
-.pos-auth {
-  right: 50px; 
+.modal-wrapper--songs,
+.modal-wrapper--artist,
+.modal-wrapper--auth {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 @media screen and (max-width: 900px) {
   .page {
-    background-image: linear-gradient(to bottom right, #ffc508, #61d8ed);
     min-height: 100vh;
     padding-top: 10px;
   }
-  .page__content { 
 
-    margin: 0 16px; 
+  .page__content {
+    margin: 0 12px;
   }
-  .modal-wrapper { 
-    top: 110px; 
-    left: 16px;
-     right: 16px; 
-     width: auto; 
-    }
-  .pos-songs, .pos-artist, .pos-auth { 
-    left: 16px; 
-    width: calc(100% - 32px); 
+
+  .modal-wrapper {
+    top: 110px;
+    left: 12px;
+    right: 12px;
+    width: auto;
   }
 }

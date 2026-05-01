@@ -37,7 +37,6 @@ function UserSignup({ onClose, isMenuOpen, onSwitchToLogin, onSignup}) {
   const userSignupSwitchLogin = "Log In Here";
 
   return (
-    <form onSubmit={handleSubmit}>
       <ModalLoginSignup
         userSignupHeader={userSignupHeader}
         userSignupName={userSignupName}
@@ -59,8 +58,8 @@ function UserSignup({ onClose, isMenuOpen, onSwitchToLogin, onSignup}) {
         confirmPassword={confirmPassword}
         setConfirmPassword={setConfirmPassword}
         signupError={error}
+        onSubmit={handleSubmit}
       />
-    </form>
   );
 }
 

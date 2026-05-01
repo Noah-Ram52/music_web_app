@@ -16,7 +16,8 @@ function UserProfile ({
    const favs = Array.isArray(favorites) && favorites.length ? favorites : [];
 
     return (
-        <div className="user-profile">
+        <section className="user-profile">
+        
             <div className="user-profile__left-sidebar">
                 <div className="user-profile__left-sidebar_space">{user?.name}</div>
                     <div>
@@ -34,10 +35,10 @@ function UserProfile ({
                         </Link>
                     </div>
             </div>
-            <div className="user-profile__main_user_profile">
-                <FavoritedUserSongs favorites={favs} />
-            </div>
-        </div>
+                <div className="user-profile__main_user_profile">
+                    <FavoritedUserSongs favorites={favs} />
+                </div>
+        </section>
     );
 }
 

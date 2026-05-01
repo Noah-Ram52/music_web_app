@@ -210,26 +210,46 @@ const toggleFavorite = (item) => {
 
   return (
     <>
-      
-
     {isMusicGenreOpen && (
-      <div className={`modal-wrapper ${menuTitle === "Music Songs" ? "pos-songs" : menuTitle === "Music Artist" ? "pos-artist" : "pos-auth"}`}>
+      <div
+        className={`modal-wrapper ${
+          menuTitle === "Music Songs"
+          ? "modal-wrapper--songs"
+          : menuTitle === "Music Artist"
+          ? "modal-wrapper--artist"
+          : "modal-wrapper--auth"
+        }`}
+      >
           {menuTitle === "Music Songs" && (
-            <MusicGenreSongsList isMenuOpen={isMusicGenreOpen} onClose={closeMusicMenu} title={menuTitle} />
+            <MusicGenreSongsList 
+              isMenuOpen={isMusicGenreOpen} 
+              onClose={closeMusicMenu} 
+              title={menuTitle} 
+            />
           )}
           {menuTitle === "Music Artist" && (
-            <MenuMusicArtist isMenuOpen={isMusicGenreOpen} onClose={closeMusicMenu} title={menuTitle} />
+            <MenuMusicArtist 
+              isMenuOpen={isMusicGenreOpen} 
+              onClose={closeMusicMenu}
+              title={menuTitle} 
+            />
           )}
           {menuTitle === "Login or Sign Up" && (
-            authView === "login" ? <UserLogin isMenuOpen={isMusicGenreOpen}
-            onClose={closeMusicMenu}
-            onSwitchToSignup={() => setAuthView("signup")}
-            onLogin={handleLogin}     
-            loginError={loginError}    
-            isLoggedIn={isLoggedIn} /> : <UserSignup isMenuOpen={isMusicGenreOpen}
-            onClose={closeMusicMenu}
-            onSwitchToLogin={() => setAuthView("login")}
-            onSignup={handleSignup} />
+            authView === "login" ? 
+            <UserLogin isMenuOpen={isMusicGenreOpen}
+              onClose={closeMusicMenu}
+              onSwitchToSignup={() => setAuthView("signup")}
+              onLogin={handleLogin}     
+              loginError={loginError}    
+              isLoggedIn={isLoggedIn} 
+              /> 
+            : 
+            <UserSignup 
+              isMenuOpen={isMusicGenreOpen}
+              onClose={closeMusicMenu}
+              onSwitchToLogin={() => setAuthView("login")}
+              onSignup={handleSignup} 
+            />
           )}
      </div>
    )}

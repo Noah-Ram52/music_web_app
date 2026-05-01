@@ -9,12 +9,12 @@
   font-family: "Roboto", sans-serif;
 }
 
-.about__contact_info {
+.about__contact-info {
   text-decoration: none;
   color: black;
 }
 
-.about__contact_info:hover {
+.about__contact-info:hover {
   animation: boldContactInfo ease infinite 2s;
 }
 

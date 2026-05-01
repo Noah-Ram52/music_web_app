@@ -4,29 +4,37 @@
 
 .menu-music-genre.menu-music-genre--open {
   display: flex;
-  position: absolute;
-  align-items: center;
+  position: relative;
+  justify-content: center;
   z-index: 1000;
 }
 
 .menu-music-genre__panel {
   font-family: "Roboto", sans-serif;
   max-width: 100%;
+  width: 160px;
   border: 3px solid #000;
   background: radial-gradient(
     circle,
     rgba(63, 94, 251, 1) 0%,
     rgba(252, 70, 107, 1) 125%
   );
-  padding: 12px 20px;    
-  text-align: center;   
-  text-decoration: none; 
-  color: inherit;   
-  width: 100%;        
-  cursor: pointer;     
+  padding: 12px 20px;
+  text-align: center;
+  color: inherit;
+  cursor: pointer;
   border-radius: 8px;
-  border: 3px solid #000;
   position: relative;
+}
+
+.menu-music-genre--songs .menu-music-genre__panel {
+  bottom: 10px;
+  right: 785px;
+}
+
+.menu-music-genre--artist .menu-music-genre__panel {
+  bottom: 30px;
+  right: 325px;
 }
 
 .menu-music-genre__title {
@@ -35,7 +43,7 @@
   margin-top: 0;
 }
 
-.menu-music-genre__button_items {
+.menu-music-genre__button-items {
   background: transparent;
   border-radius: 50%;
   display: block;    
@@ -60,7 +68,20 @@
 }
 
 @media screen and (max-width: 768px) {
-  .menu-music-genre__panel {
-    right: 150px;
+  .menu-music-genre--artist .menu-music-genre__panel {
+    left: 0px;
+    bottom: 6px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 120px;
   }
+
+  .menu-music-genre--songs .menu-music-genre__panel {
+    right: 191px;
+    top: 14px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 120px;
+  }
+
 }
